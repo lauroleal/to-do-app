@@ -35,22 +35,31 @@ form.addEventListener("submit", function(event) {
     }
 
     // validando se os campos das senhas correspondem
-    function confirSenha(senha, repetirSenha) {
-        if (repetirSenha.value != '') {
-            if (senha.value != repetirSenha.value) {
+    function confirSenha(campo_1, campo_2) {
+        if (campo_1.value.length > 0 && campo_2.value.length > 0) {
+            if (campo_1.value != campo_2.value) {
                 selectId("erroForm").innerHTML += `<li> As <b>Senhas</b> digitadas não correspondem </li>`;
             }
         }
-
+    }
+    // validando se os campos das senhas correspondem
+    function tamnhoSenha(campo_1, campo_2) {
+        if (campo_1.value.length > 0 && campo_2.value.length > 0) {
+            if (campo_1.value.length <= 7) {
+                selectId("erroForm").innerHTML += `<li> Sua <b>Senha</b> precisa ter no mínimo 8 caracteres </li>`;
+            }
+        }
     }
 
-    // chamando as funçõespara testar se os campos
+    // chamando as funções para testar se os campos
     campoVazio(nome);
     campoVazio(sobrenome);
     campoVazio(email);
     campoVazio(senha);
     campoVazioSenha(repetirSenha);
     confirSenha(senha, repetirSenha);
+    tamnhoSenha(senha, repetirSenha);
+
 
     //impedindo de enviar os dados se campos não foram preenchidos
     if (document.querySelectorAll("li").length > 0) {

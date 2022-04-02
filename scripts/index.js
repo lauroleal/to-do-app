@@ -27,9 +27,21 @@ form.addEventListener("submit", function(event) {
         }
     }
 
+    function validarSessao(campo_1, campo_2) {
+        if (campo_1.value.length > 0 && campo_2.value.length > 0) {
+            if (campo_1.value != bancoDados.Email || campo_2.value != bancoDados.Senha) {
+                selectId("erroForm").innerHTML += `<li> <b>Email</b> e <b>senha</b> não conferem ou usuário não cadastrado! </li>`;
+            }
+        }
+
+    }
+
     // chamando as funções para testar se os campos estão vazios
     campoVazio(email);
     campoVazio(senha);
+    // chamando as funções para validadr que o que estar armazenado na session corresponde 
+    // ao informado no login
+    validarSessao(email, senha);
 
     //impedindo de enviar os dados se campos não foram preenchidos
     // if (document.querySelectorAll("li").length > 0) {
@@ -37,6 +49,4 @@ form.addEventListener("submit", function(event) {
     // }
 
 
-
-    console.log(bancoDados.Nome);
 })
