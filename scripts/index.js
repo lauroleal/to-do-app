@@ -11,7 +11,6 @@ let form = document.querySelector("form");
 
 // evento que captura os dados do form
 form.addEventListener("submit", function(event) {
-    event.preventDefault();
 
 
     let email = selectId("inputEmail");
@@ -44,9 +43,9 @@ form.addEventListener("submit", function(event) {
     validarSessao(email, senha);
 
     //impedindo de enviar os dados se campos não foram preenchidos
-    // if (document.querySelectorAll("li").length > 0) {
-    //     event.preventDefault();
-    // }
+    if (document.querySelectorAll("li").length > 0) {
+        event.preventDefault();
+    }
 
 
 })
