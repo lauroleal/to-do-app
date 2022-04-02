@@ -1,0 +1,136 @@
+@import url('./common.css');
+
+/* body {
+    display: flex;
+} */
+
+header {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    color: var(--primary);
+    font-weight: 300;
+    margin: .5em 0;
+}
+
+form {
+    position: relative;
+    max-width: 26em;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 2em auto;
+    box-shadow: 0 5px 5px lightgrey;
+    padding: 1em 2.5em;
+    box-sizing: border-box;
+}
+
+form:after {
+    position: absolute;
+    content: '';
+    width: .7em;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(var(--primary), var(--secondary));
+}
+
+input {
+    width: 100%;
+    padding: .4em .5em;
+    background-color: var(--app-grey);
+    border: 1px solid var(--app-grey);
+    border-radius: 1em;
+}
+
+::placeholder {
+    color: #f22558af;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid lightgrey;
+}
+
+label {
+    width: 100%;
+    font-weight: 300;
+    margin-bottom: -.1em;
+    margin-top: 1em;
+    font-size: .8em;
+    font-weight: bold;
+    color: #F22558;
+}
+
+button {
+    padding: .5em 3em;
+    background-color: var(--secondary);
+    color: white;
+    margin-top: 2em;
+    font-weight: 400;
+    font-size: 1em;
+    border-radius: 1em;
+}
+
+.form-header {
+    color: var(--secondary);
+    font-size: 2em;
+}
+
+.ingressar {
+    text-align: center;
+}
+
+
+/* links fazer cadasdeo / login */
+
+.ingressar__p {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    background: var(--secondary);
+    border-radius: 1em;
+    font-size: 1em;
+}
+
+.ingressar__p:hover {
+    background-color: #f22558e7;
+}
+
+.left {
+    width: 50%;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left img {
+    width: 60%;
+}
+
+.right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+
+/*único CSS que eu coloquei*/
+
+li {
+    color: #F22558;
+    font-size: 14px;
+}
+
+.div__erros {
+    margin-top: 15px;
+}

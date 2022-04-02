@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link id="icon" rel="icon" type="image/png" href="./assets/icon.png">
+
+    <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
+    <link rel="stylesheet" href="styles/acesso.css">
+    <link rel="stylesheet" href="styles/extras.css">
+
+    <!-- ---------------------- lógica aplicada no login ----------------------- 
+    <script src="/scripts/index.js"></script>   -->
+    <script src="/scripts/utils.js"></script>
+
+
+
+</head>
+
+<body>
+    <header>
+        <section class="box__externo">
+            <section class="box__interno__mobile">
+                <img class="img__logo" src="./assets/logo__novo.png">
+            </section>
+
+            <section class="box__interno box__interno__mobile">
+                <section>
+                    <a class="facebook" href="https://www.facebook.com/lauroeleal/" target="_blank"> <img class="icones__sociais" src="./assets/facebook_logo_dark.png"></a>
+                    <a class="instagram" href="https://www.instagram.com/lauroeleal/" target="_blank"> <img class="icones__sociais" src="./assets/instagram_logo-dark.png"></a>
+                    <a class="twitter" href="https://twitter.com/lauroeleal" target="_blank"> <img class="icones__sociais" src="./assets/twitter_logo_dark.png"></a>
+                    <a class="linkedin" href="https://www.linkedin.com/in/lauroleal" target="_blank"> <img class="icones__sociais" src="./assets/linkedin_logo_dark.png"></a>
+                    <a class="github" href="https://github.com/lauroleal" target="_blank"><img class="icones__sociais" src="./assets/GitHub_logo_da.png"></a>
+                    <a class="whatsapp" href="https://api.whatsapp.com/send?phone=5511963840978" target="_blank"><img class="icones__sociais" src="./assets/Whatsapp_logo_dark.png"></a>
+                </section>
+            </section>
+        </section>
+
+    </header>
+    <div class="box__flex">
+
+        <div class="left">
+            <img src="./assets/pessoa-login.png" alt="">
+        </div>
+
+        <div class="right">
+            <form action="tarefas.html">
+                <div class="form-header">
+                    <img class="logo__to" src="./assets/logo__todo.png">
+                </div>
+                <h1>Acessar</h1>
+                <label>
+        Email:
+        <input id="inputEmail" name="Email" type="email" placeholder="Seu email">
+      </label>
+                <label>
+        Senha:
+        <input id="inputPassword" name="Senha" type="password" placeholder="Sua senha">
+      </label>
+                <div class="div__erros">
+                    <ul id="erroForm">
+                    </ul>
+                </div>
+                <button type="submit">Acessar</button>
+            </form>
+            <script src="/scripts/index.js"></script>
+            <div class="ingressar">
+                <a class="ingressar__p" href="signup.html">Não possui conta? Crie agora mesmo</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <section class="box__externo__conteudo">
+            <img class="img__logo" src="./assets/logo__Lauro__2__novo.png">
+        </section>
+        <section class="box__externo__conteudo">
+            <p class="p__footer">© 2021. Alguns direitos reservados. Desenvolvido por Lauro Leal👻</p>
+        </section>
+    </footer>
+</body>
+
+</html>

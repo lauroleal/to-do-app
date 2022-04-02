@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+:root {
+    --primary: #000000;
+    --secondary: #F22558;
+    --app-grey: #e9e3e3;
+}
+
+@font-face {
+    font-family: CenturyGothic;
+    src: url("../fonts/CenturyGothic.ttf")
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: CenturyGothic;
+}
+
+body {
+    background-color: #F6F6F6;
+    min-height: 100vh;
+}
+
+button {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
