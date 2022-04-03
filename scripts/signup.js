@@ -64,7 +64,7 @@ form.addEventListener("submit", function(event) {
     //############# Hora de gerar um arquivo JSon #####################
 
     // Obj literal com os dados do form
-    const dadosCadastro = { Nome: nome.value, Sobrenome: sobrenome.value, Email: email.value, Senha: senha.value };
+    const dadosCadastro = { Nome: nome.value, Sobrenome: sobrenome.value, Email: email.value, Senha: senha.value, Img: "img" };
 
     // Obj literal para JSON + Armazenando na Session Storage
     sessionStorage.setItem("dadosCadastro", JSON.stringify(dadosCadastro));

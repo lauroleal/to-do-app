@@ -61,3 +61,14 @@ textarea:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
 }
+
+fieldset {
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+    border: solid 1px #F22558;
+}
+
+legend {
+    color: #F22558;
+}

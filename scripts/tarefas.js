@@ -6,9 +6,11 @@ function selectId(id) {
 }
 
 let nome = bancoDados.Nome;
-console.log(nome);
+let img = bancoDados.Img;
 
 selectId("nome_user").innerHTML = `Olá, ${nome}`;
+selectId("img__perfil").setAttribute('src', img);
+
 
 
 // funções para alterar a imagem
