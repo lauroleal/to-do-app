@@ -56,6 +56,9 @@ a.facebook:hover {
     width: 33px;
     height: auto;
     margin: 15px 5px 5px 0px;
+    text-decoration: none;
+    border-bottom: none;
+    padding: 0;
 }
 
 a.instagram:hover {

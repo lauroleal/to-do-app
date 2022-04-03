@@ -16,6 +16,12 @@ a {
     color: white
 }
 
+.link_alt {
+    text-decoration: none;
+    border-bottom: none;
+    padding: 0;
+}
+
 .user-info {
     display: flex;
     align-items: center;
@@ -75,7 +81,7 @@ a {
 /* Menu drop ----------------------------------------------------------- */
 
 .dropbtn {
-    background-color: transparent;
+    background: transparent;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -105,6 +111,7 @@ a {
     padding: 20px 16px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
 
 .dropdown:hover .dropdown-content {
@@ -112,7 +119,7 @@ a {
 }
 
 .dropdown:hover .dropbtn {
-    background: var(--secondary);
+    background: transparent;
 }
 
 
