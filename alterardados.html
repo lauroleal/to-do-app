@@ -19,7 +19,7 @@
     <header>
         <section class="box__externo">
             <section class="box__interno__mobile">
-                <img class="img__logo" src="./assets/logo__novo.png">
+                <a href="https://lauroleal.github.io/to-do-app/"><img class="img__logo" src="./assets/logo__novo.png"></a>
             </section>
 
             <section class="box__interno box__interno__mobile">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="right">
-            <form id="form-atualizar" action="tarefas.html">
+            <form id="form-atualizar">
                 <fieldset>
                     <legend>
                         Atualizar dados Pessoais
@@ -114,10 +114,13 @@
                     function selectId(id) {
                         return document.getElementById(id);
                     }
-                    //Pra trazer os campos com os dados da sessionStorage
-                    selectId("nome").value = bancoDados.Nome;
-                    selectId("sobrenome").value = bancoDados.Sobrenome;
-                    selectId("email").value = bancoDados.Email;
+                    // tentanto tratar o erro no console e tals
+                    if (typeof dadosCadastro != null || typeof bancoDados != null) {
+                        //Pra trazer os campos com os dados da sessionStorage
+                        selectId("nome").value = bancoDados.Nome;
+                        selectId("sobrenome").value = bancoDados.Sobrenome;
+                        selectId("email").value = bancoDados.Email;
+                    }
                 </script>
                 <button type="button" onclick="location.href='tarefas.html';">Voltar</button>
                 </section>

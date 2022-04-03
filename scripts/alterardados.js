@@ -9,6 +9,7 @@ let form = document.querySelector("form");
 
 // evento que captura os dados do form
 form.addEventListener("submit", function(event) {
+    //event.preventDefault();
 
     // Recuperando os dados da SessionStorage
     let bancoDados = JSON.parse(sessionStorage.getItem('dadosCadastro'));
@@ -36,20 +37,28 @@ form.addEventListener("submit", function(event) {
     campoVazio(email);
     campoVazio(senhaAtual);
 
-    if (senhaAtual.value === bancoDados.Senha) {
-        // se foi add um novo nome cadastre
-        if (nome.value != '' && nome.value != bancoDados.Nome) {
-            bancoDados["Nome"] = nome.value;
+    if (senhaAtual.value != null && senhaAtual.value != "" && senhaAtual.value === bancoDados.Senha) {
+        if (senhaAtual.value === bancoDados.Senha) {
+            // se foi add um novo nome cadastre
+            if (nome.value != '' && nome.value != bancoDados.Nome) {
+                bancoDados["Nome"] = nome.value;
+            }
+            // se foi add um novo sobrenom cadastre
+            if (sobrenome.value != '' && sobrenome.value != bancoDados.Sobrenome) {
+                bancoDados["Sobrenome"] = sobrenome.value;
+            }
+            // se foi add um novo email cadastre
+            if (email.value != '' && email.value != bancoDados.Email) {
+                bancoDados["Email"] = email.value;
+            }
         }
-        // se foi add um novo sobrenom cadastre
-        if (sobrenome.value != '' && sobrenome.value != bancoDados.Sobrenome) {
-            bancoDados["Sobrenome"] = sobrenome.value;
-        }
-        // se foi add um novo email cadastre
-        if (email.value != '' && email.value != bancoDados.Email) {
-            bancoDados["Email"] = email.value;
-        }
+
     }
+    // //tratando uma possibilidade de abrir a pagina de cadastro sem ter feito o cadastro
+    // if (bancoDados.Senha === null || banco.Nome === null || bancoDados.Sobrenome === null) {
+    //     selectId("erroFormP").innerHTML += `<li>Primeiro faça o <b>cadastro</b> no sistema</li>`;
+    // }
+
     // se senha digitada e diferente do registrado
     if (senhaAtual.value != '' && senhaAtual.value != bancoDados.Senha) {
         selectId("erroFormP").innerHTML += `<li><b>Senha Atual</b> não confere com nossos registros😅</li>`;

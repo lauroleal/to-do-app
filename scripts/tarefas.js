@@ -5,11 +5,17 @@ function selectId(id) {
     return document.getElementById(id);
 }
 
+//Sentando o nome de usuario
 let nome = bancoDados.Nome;
-let img = bancoDados.Img;
-
 selectId("nome_user").innerHTML = `Olá, ${nome}`;
-selectId("img__perfil").setAttribute('src', img);
+
+// sentando nova im no perfil se ela foi cadastrada no editar cadastro
+if (bancoDados.Img != "img") {
+    let img = bancoDados.Img;
+    selectId("img__perfil").setAttribute('src', img);
+}
+
+
 
 
 
