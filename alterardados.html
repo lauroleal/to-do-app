@@ -11,12 +11,7 @@
     <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
     <link rel="stylesheet" href="styles/acesso.css">
     <link rel="stylesheet" href="styles/extras.css">
-
-
-    <!-- ---------------------- lógica aplicada no registro -------------------- 
-    <script src="/scripts/utils.js"></script> -->
-
-
+    <link rel="stylesheet" href="styles/alterardados.css">
 
 </head>
 
@@ -42,49 +37,61 @@
     </header>
     <div class="box__flex">
         <div class="left">
-            <img src="./assets/pessoa-signup.png" alt="">
+            <img src="./assets/img__atuacadastro.svg" alt="">
         </div>
+
         <div class="right">
-            <form id="form-signup" action="index.html">
-                <div class="form-header">
-                    <img class="logo__to" src="./assets/logo__todo.png">
-                </div>
-
+            <form id="form-atualizar" action="tarefas.html">
                 <label>
-        Nome:
-        <input type="text" id="nome" name="nome" placeholder="Seu nome">
-      </label>
+    Nome:
+    <input type="text" id="nome" name="nome" placeholder="Seu nome">
+   </label>
                 <label>
-        Sobrenome:
-        <input type="text" id="sobrenome"  name="sobrenome" placeholder="Seu sobrenome">
-      </label>
+    Sobrenome:
+    <input type="text" id="sobrenome"  name="sobrenome" placeholder="Seu sobrenome">
+  </label>
                 <label>
-        Email:
-        <input type="email" id="email"   name="email" placeholder="Seu email">
-        
-      </label>
+    Email:
+    <input type="email" id="email"   name="email" placeholder="Seu email">
+  </label>
                 <label>
-        Senha:
-        <input type="password" id="senha" name="senha" placeholder="Escolha uma senha">
-      </label>
+    Senha atual:
+    <input type="password" id="senha" name="senha" placeholder="Sua senha atual">
+  </label>
                 <label>
-        Repetir senha:
-        <input type="password" id="repetirSenha" name="repetirSenha" placeholder="Repita a senha">
-   
-    </label>
-
+    Nova senha:
+    <input type="password" id="novaSenha" name="novaSenha" placeholder="Sua nova senha">
+</label>
+                <label>
+    Repetir nova senha:
+    <input type="password" id="repetirNovaSenha" name="repetirNovaSenha" placeholder="Repita sua nova senha">
+</label>
+                <label>
+    Cole o link da imagem
+    <input  type="text" id="link" name="campo__imagem" value="" placeholder="Link da imagem">
+            </label>
                 <div class="div__erros">
                     <ul id="erroForm">
                     </ul>
                 </div>
+                <script>
+                    // Recuperando os dados da SessionStorage
+                    let bancoDados = JSON.parse(sessionStorage.getItem('dadosCadastro'));
 
-                <button type="submit">Criar conta</button>
-
+                    // função para otimizar o document.getElementById();
+                    function selectId(id) {
+                        return document.getElementById(id);
+                    }
+                    //Pra trazer os campos com os dados da sessionStorage
+                    selectId("nome").value = bancoDados.Nome;
+                    selectId("sobrenome").value = bancoDados.Sobrenome;
+                    selectId("email").value = bancoDados.Email;
+                </script>
+                <button type="submit" id="botao">Atualizar</button>
+                <button type="button" onclick="location.href='tarefas.html';">Voltar</button>
+                </section>
+                <script src="./scripts/alterardados.js"></script>
             </form>
-            <script src="./scripts/signup.js"></script>
-            <div class="ingressar">
-                <a class="ingressar__p" href="index.html">Já possui conta? Acesse aqui</a>
-            </div>
         </div>
     </div>
     <footer>

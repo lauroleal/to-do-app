@@ -1,0 +1,63 @@
+@font-face {
+    font-family: CenturyGothic;
+    src: url("../fonts/CenturyGothic.ttf")
+}
+
+* {
+    font-family: CenturyGothic;
+}
+
+body {
+    background-color: #e9e3e3;
+}
+
+.form {
+    background-color: #ffffff;
+    min-width: 100px;
+    max-width: 310px;
+    border-radius: 10px;
+    height: auto;
+    padding: 20px 5px 10px 10px;
+}
+
+
+/*Propriedades dos textos/titulos dos formularios*/
+
+.formulario__texto {
+    margin: 12px;
+    font-size: 15px;
+    color: #F22558;
+    font-weight: bold;
+}
+
+
+/*Propriedades do input do formulario*/
+
+.formulario__campo {
+    border-radius: 5px;
+    border: solid 1px #F22558;
+    height: 12px;
+    min-width: 100px;
+    max-width: 200px;
+    font-size: 12px;
+    color: #F22558;
+    padding: 10px;
+    margin: 3px 9px 3px 9px;
+}
+
+ ::placeholder {
+    font-size: 12px;
+    color: #F22558;
+}
+
+.formulario__campo__selecinar {
+    width: 200px;
+    font-size: 15px;
+    margin: 3px 9px 3px 9px;
+}
+
+.formulario__campo:focus,
+textarea:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}

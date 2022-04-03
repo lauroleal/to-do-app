@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 
+
     <title>To-Do App</title>
     <link id="icon" rel="icon" type="image/png" href="./assets/icon.png">
 </head>
@@ -32,14 +33,21 @@
         </nav>
 
         <div class="user-info">
-            <p>Nome usuário</p>
-            <div class="user-image"></div>
-            <p id="closeApp">Finalizar sessão</i>
-            </p>
+
+            <div class="dropdown">
+                <button class="dropbtn"><p id="nome_user">Nome usuário</p></button>
+                <div class="dropdown-content">
+                    <p class="menu">Alterar dados</p>
+                    <p class="menu" id="closeApp">Finalizar sessão</p>
+                </div>
+            </div>
+            <div class="user-image">
+                <span id="menssagem__alterar" onmousemove="legendaImg()" onmouseout="tiraLegenda()" onclick="location.href='alterardados.html';">
+                <p class="principal" id="id_menssagem"></p></span>
+                <img id="img__perfil" class="user-image-img" src="./assets/img__padrao__normal.png">
+            </div>
         </div>
     </header>
-
-
     <form class="nova-tarefa">
         <div class="not-done "></div>
         <input id="novaTarea" type="text" placeholder="Nova tarefa">
@@ -47,7 +55,6 @@
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
     </form>
-
 
     <ul class="tarefas-pendentes">
         <div id="skeleton">
@@ -80,7 +87,7 @@
     <ul class="tarefas-terminadas">
 
     </ul>
-
+    <script src="./scripts/tarefas.js"></script>
 </body>
 
 </html>
