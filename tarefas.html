@@ -27,7 +27,7 @@
     <link id="icon" rel="icon" type="image/png" href="./assets/icon.png">
 </head>
 
-<body>
+<body onload="carregarInfoUser()">
     <header>
         <nav>
             <a href="#">Tarefas</a>
@@ -43,8 +43,8 @@
                 </div>
             </div>
             <div class="user-image">
-                <span id="menssagem__alterar" onmousemove="legendaImg()" onmouseout="tiraLegenda()" onclick="location.href='alterardados.html';">
-                <p class="principal" id="id_menssagem"></p></span>
+                <!-- <span id="menssagem__alterar" onmousemove="legendaImg()" onmouseout="tiraLegenda()" onclick="location.href='alterardados.html';">
+                <p class="principal" id="id_menssagem"></p></span> -->
                 <img id="img__perfil" class="user-image-img" src="./assets/img__padrao__normal.png">
             </div>
         </div>

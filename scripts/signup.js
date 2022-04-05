@@ -9,6 +9,7 @@ let form = document.querySelector("form");
 
 // evento que captura os dados do form
 form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
     // obtendo os valores dos campos do form
     let nome = selectId("nome");
@@ -63,15 +64,53 @@ form.addEventListener("submit", function(event) {
 
     //############# Hora de gerar um arquivo JSon #####################
 
-    // Obj literal com os dados do form
-    const dadosCadastro = { Nome: nome.value, Sobrenome: sobrenome.value, Email: email.value, Senha: senha.value, Img: "img" };
 
-    // Obj literal para JSON + Armazenando na Session Storage
-    sessionStorage.setItem("dadosCadastro", JSON.stringify(dadosCadastro));
+    function cadastrarUser() {
 
+        const dados = {
+            firstName: nome.value,
+            lastName: sobrenome.value,
+            email: email.value,
+            password: senha.value
+        };
+        const url = "https://ctd-todo-api.herokuapp.com/v1/users";
+
+        const promessa = fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        });
+
+        promessa
+            .then(function(Response) {
+                console.log(Response["status"]);
+                if (Response["status"] < 300) {
+                    setTimeout(function() {
+                        selectId("erroForm").innerHTML += `<li> <b class="verde">Cadastrado com sucesso! abrindo tela de login...</b> </li>`;
+                        window.location = 'index.html';
+                    }, 8000);
+                } else if (Response["status"] >= 400 && Response["status"] < 500) {
+                    selectId("erroForm").innerHTML += `<li> <b>Encontramos um cadastro para este usuário!</b> </li>`;
+                } else if (Response["status"] >= 500) {
+                    selectId("erroForm").innerHTML += `<li> <b>Erro no servidor!</b> </li>`;
+                }
+                return Response.json();
+            })
+            .then(function(tokenUsuario) {
+                console.log(tokenUsuario);
+
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+    }
     //impedindo de enviar os dados se campos não foram preenchidos
     if (document.querySelectorAll("li").length > 0) {
         event.preventDefault();
+    } else {
+        cadastrarUser(nome, sobrenome, email, senha);
     }
 
 })

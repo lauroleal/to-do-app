@@ -11,7 +11,7 @@ let form = document.querySelector("form");
 
 // evento que captura os dados do form
 form.addEventListener("submit", function(event) {
-
+    event.preventDefault();
 
     let email = selectId("inputEmail");
     let senha = selectId("inputPassword");
@@ -26,25 +26,61 @@ form.addEventListener("submit", function(event) {
         }
     }
 
-    function validarSessao(campo_1, campo_2) {
-        if (campo_1.value.length > 0 && campo_2.value.length > 0) {
-            if (campo_1.value != bancoDados.Email || campo_2.value != bancoDados.Senha) {
-                selectId("erroForm").innerHTML += `<li> <b>Email</b> e <b>senha</b> não conferem ou usuário não cadastrado! </li>`;
-            }
-        }
-
-    }
 
     // chamando as funções para testar se os campos estão vazios
     campoVazio(email);
     campoVazio(senha);
-    // chamando as funções para validadr que o que estar armazenado na session corresponde 
-    // ao informado no login
-    validarSessao(email, senha);
+
+    function logarUser(email, senha) {
+
+        const dados = {
+            email: email.value,
+            password: senha.value
+        };
+        const url = "https://ctd-todo-api.herokuapp.com/v1/users/login";
+
+        const promessa = fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        });
+
+        promessa
+            .then(function(Response) {
+                console.log(Response["status"]);
+                if (Response["status"] < 300) {
+                    setTimeout(function() {
+                        selectId("erroForm").innerHTML += `<li> <b class="verde">Login Aprovado!</b> </li>`;
+                        window.location = 'tarefas.html';
+                    }, 3000);
+                } else if (Response["status"] === 400) {
+                    selectId("erroForm").innerHTML += `<li> <b>Senha incorreta!</b> </li>`;
+                } else if (Response["status"] === 404) {
+                    selectId("erroForm").innerHTML += `<li> <b>Usuário não cadastrado!</b> </li>`;
+                } else if (Response["status"] >= 500) {
+                    selectId("erroForm").innerHTML += `<li> <b>Erro no servidor!</b> </li>`;
+                }
+                return Response.json();
+
+            })
+
+        .then(function(tokenUsuario) {
+                console.log(tokenUsuario);
+                localStorage.setItem("token", tokenUsuario['jwt']);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+    }
+
 
     //impedindo de enviar os dados se campos não foram preenchidos
     if (document.querySelectorAll("li").length > 0) {
         event.preventDefault();
+    } else {
+        logarUser(email, senha);
     }
 
 

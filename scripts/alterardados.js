@@ -134,12 +134,12 @@ function atualiSenha() {
         if (novaSenha.value.length >= 7 && novaSenha.value === repetirNovaSenha.value) {
             bancoDados["Senha"] = novaSenha.value;
             selectId("erroFormS").innerHTML = `<li> <b>Senha</b> atualizada com sucesso! 😁</li>`;
-            if (document.querySelectorAll("li").length > 0) {
-                setTimeout(function() {
-                    window.location = 'tarefas.html';
-                }, 3000);
+            // if (document.querySelectorAll("li").length > 0) {
+            //     setTimeout(function() {
+            //         window.location = 'tarefas.html';
+            //     }, 3000);
 
-            }
+            // }
 
         }
     }
@@ -171,19 +171,23 @@ function atualiImg() {
     campoVazioI(senhaCadastrada2);
     campoVazioI(img);
 
+
+
     // setando a nova imagem se atendeu a todos os parametros já implementados e redirecionando para tarefas
     if (senhaCadastrada2.value === bancoDados.Senha && img.value != "") {
         console.log(img.value);
         bancoDados["Img"] = img.value;
-        selectId("erroFormI").innerHTML += `<li> Alguma subiu!</li>`;
-        if (document.querySelectorAll("li").length > 0) {
-            setTimeout(function() {
-                window.location = 'tarefas.html';
-            }, 3000);
+        selectId("erroFormI").innerHTML += `<li> Se o link enviado for uma imagem, você vera as aletarações na tela de <b>tarefas</b></li>`;
+        // if (document.querySelectorAll("li").length > 0) {
+        //     setTimeout(function() {
+        //         window.location = 'tarefas.html';
+        //     }, 3000);
 
-        }
+        // }
 
     }
     // atualizando os dados
     sessionStorage.setItem("dadosCadastro", JSON.stringify(bancoDados));
+
+
 }
