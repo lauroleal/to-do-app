@@ -120,9 +120,7 @@ a {
 /* Legenda de submissão de Nova tarefa ----------------------------------------------------------- */
 
 #legenda-tarefa {
-    position: relative;
-    align-items: center;
-    margin: 0 30%;
+    text-align: center;
     padding: 1em;
     z-index: 20;
     color: var(--secondary);
@@ -197,10 +195,21 @@ a {
 
 /* Lista de tarefas ----------------------------------------------------------- */
 
+.buttons-tarefas {
+    background-color: transparent;
+    padding: 10px;
+    height: auto;
+}
+
+.img-tarefas {
+    width: 30px;
+    height: auto;
+}
+
 .tarefas-pendentes {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 75%;
     list-style: none;
     margin: 2em 15%;
 }
@@ -311,20 +320,20 @@ a {
     text-decoration: line-through;
 }
 
-#skeleton .descricao {
+.skeleton .descricao {
     background-color: rgb(189, 189, 189);
 }
 
-#skeleton p {
+.skeleton p {
     background-color: rgb(214, 214, 214);
     color: rgb(214, 214, 214);
 }
 
-#skeleton .not-done {
+.skeleton .not-done {
     background-color: rgb(189, 189, 189);
 }
 
-#skeleton {
+.skeleton {
     animation: trasparencia 1s infinite;
 }
 

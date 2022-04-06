@@ -30,7 +30,7 @@
 <body>
     <header>
         <nav>
-            <a href="#" onclick="recuperarTarefas()">Tarefas</a>
+            <a href="#">Tarefas</a>
         </nav>
 
         <div class="user-info">
@@ -53,7 +53,7 @@
     <form class="nova-tarefa">
 
         <div class="not-done"></div>
-        <input id="novaTarea" type="text" placeholder="Nova tarefa">
+        <input id="novaTarea" name="tarefa" type="text" placeholder="Nova tarefa">
         <button type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
     </button>
@@ -61,28 +61,8 @@
 
     <ul class="tarefas-pendentes">
 
-        <div id="skeleton">
-            <li class="tarefa">
-                <div class="not-done"></div>
-                <div class="descricao">
-                    <p class="nome">Nova tarefa</p>
-                    <p class="timestamp">Criada em: 15/07/21</p>
-                </div>
-            </li>
-            <li class="tarefa">
-                <div class="not-done"></div>
-                <div class="descricao">
-                    <p class="nome">Nova tarefa</p>
-                    <p class="timestamp">Criada em: 15/07/21</p>
-                </div>
-            </li>
-            <li class="tarefa">
-                <div class="not-done"></div>
-                <div class="descricao">
-                    <p class="nome">Nova tarefa</p>
-                    <p class="timestamp">Criada em: 15/07/21</p>
-                </div>
-            </li>
+        <div id="skeleton" class="skeleton">
+
 
         </div>
     </ul>

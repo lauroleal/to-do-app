@@ -62,7 +62,7 @@ form.addEventListener("submit", function(event) {
     confirSenha(senha, repetirSenha);
     tamnhoSenha(senha, repetirSenha);
 
-    //############# Hora de gerar um arquivo JSon #####################
+    //############# $$ Cadastrando as tarefa $$ #####################
 
 
     function cadastrarUser() {
