@@ -115,12 +115,12 @@
                         return document.getElementById(id);
                     }
                     // tentanto tratar o erro no console e tals
-                    if (typeof dadosCadastro != null || typeof bancoDados != null) {
-                        //Pra trazer os campos com os dados da sessionStorage
-                        selectId("nome").value = bancoDados.Nome;
-                        selectId("sobrenome").value = bancoDados.Sobrenome;
-                        selectId("email").value = bancoDados.Email;
-                    }
+                    // if (typeof dadosCadastro != null || typeof bancoDados != null) {
+                    //Pra trazer os campos com os dados da sessionStorage
+                    selectId("nome").value = bancoDados["firstName"];
+                    selectId("sobrenome").value = bancoDados["lastName"];
+                    selectId("email").value = bancoDados["email"];
+                    // }
                 </script>
                 <button type="button" onclick="location.href='tarefas.html';">Voltar</button>
                 </section>

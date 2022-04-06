@@ -2,6 +2,20 @@
     display: flex;
 }
 
+
+/*cor login Aprovado*/
+
+.verde {
+    color: green;
+}
+
+
+/*mostrar email e id na tela de tarefas*/
+
+#dadosUser {
+    font-size: 12px;
+}
+
 .box__interno {
     display: flex;
     flex: auto;

@@ -27,10 +27,10 @@
     <link id="icon" rel="icon" type="image/png" href="./assets/icon.png">
 </head>
 
-<body onload="carregarInfoUser()">
+<body>
     <header>
         <nav>
-            <a href="#">Tarefas</a>
+            <a href="#" onclick="recuperarTarefas()">Tarefas</a>
         </nav>
 
         <div class="user-info">
@@ -38,7 +38,7 @@
             <div class="dropdown">
                 <button class="dropbtn"><p id="nome_user">Nome usuário</p></button>
                 <div class="dropdown-content">
-                    <p class="menu"><a class="link_alt" href="alterardados.html">Alterar dados</a></p>
+                    <p class="menu" id="dadosUser"></p>
                     <p class="menu" id="closeApp">Finalizar sessão</p>
                 </div>
             </div>
@@ -49,8 +49,10 @@
             </div>
         </div>
     </header>
+    <p id="legenda-tarefa"></p>
     <form class="nova-tarefa">
-        <div class="not-done "></div>
+
+        <div class="not-done"></div>
         <input id="novaTarea" type="text" placeholder="Nova tarefa">
         <button type="submit">
       <img src="./assets/plus.png" alt="Adicionar uma nova tarefa">
@@ -58,6 +60,7 @@
     </form>
 
     <ul class="tarefas-pendentes">
+
         <div id="skeleton">
             <li class="tarefa">
                 <div class="not-done"></div>

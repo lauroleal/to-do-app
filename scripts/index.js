@@ -52,7 +52,7 @@ form.addEventListener("submit", function(event) {
                 console.log(Response["status"]);
                 if (Response["status"] < 300) {
                     setTimeout(function() {
-                        selectId("erroForm").innerHTML += `<li> <b class="verde">Login Aprovado!</b> </li>`;
+                        selectId("erroForm").innerHTML += `<li class="verde"> <b>Login Aprovado!</b> </li>`;
                         window.location = 'tarefas.html';
                     }, 3000);
                 } else if (Response["status"] === 400) {
