@@ -131,7 +131,14 @@ function recuperarTarefas() {
         .then(function(Response) {
             console.log(Response["status"]);
             if (Response["status"] < 300) {
-                selectId("legenda-tarefa").innerHTML = `Carregando as tarefas..`;
+                // // colocando uma immagem de carregando na tela de tarefas
+                // let imgCarregando = document.createElement("img");
+                // imgCarregando.classList.add("img-carregando");
+                // imgCarregando.setAttribute('src', './assets/carregando.gif');
+                // let div = selectId("img_carregando");
+                // div.appendChild(imgCarregando);
+
+                selectId("legenda-tarefa").innerHTML = `Carregando as tarefas`;
             } else if (Response["status"] === 401) {
                 selectId("legenda-tarefa").innerHTML = `Erro de autorização!🙄`;
             } else if (Response["status"] > 500) {
@@ -182,8 +189,17 @@ function recuperarTarefas() {
                 // add a descrição da tarefa na tag p
                 let texDesc = document.createTextNode(descricao);
                 pNome.appendChild(texDesc);
+                //##################### ainda em teste
+                pNome.setAttribute('id', `${idTarefa}texto`);
                 // criando a tag p
                 let pTempo = document.createElement("p");
+                // pra fazer um input aparecer na tela
+                let span = document.createElement("span");
+                // atribuido uma id para o input
+                span.setAttribute('id', `${idTarefa}span`);
+                let span_btn = document.createElement("span");
+                span_btn.setAttribute('id', `${idTarefa}btn`);
+
                 // atribuido a class timestamp na tag p
                 pTempo.classList.add("timestamp");
                 // add a data da descricao na tag p
@@ -208,9 +224,11 @@ function recuperarTarefas() {
                 imgEdit.setAttribute('src', './assets/editar.svg');
 
 
-
                 // jogando tudo na tela
-                divDesc.appendChild(pNome);
+                span.appendChild(pNome)
+                divDesc.appendChild(span);
+                divDesc.appendChild(span_btn);
+                //divDesc.appendChild(pNome);
                 divDesc.appendChild(pTempo);
                 divDone.appendChild(divDesc);
                 butaoDel.appendChild(imgDel);
@@ -225,10 +243,10 @@ function recuperarTarefas() {
             })
 
             setTimeout(function() {
+                // removendo a menssagem da tela
                 selectId("legenda-tarefa").innerHTML = '';
                 // removendo o efeito de tarefas carregando
                 selectId("skeleton").classList.remove("skeleton");
-
             }, 5000);
 
         })
@@ -279,7 +297,54 @@ function deletarTarefa(id) {
         });
 }
 
+//##################################### Criar um enput pra editar as tarefas
+
 function EditarTarefa(id) {
+    // selecionando  a div que é criada a nova tarefa
+    let div = selectId(`${id}span`);
+    // criando uma nova tag input
+    let input = document.createElement("input");
+    // atribuido uma id pata a nova tag input
+    input.setAttribute('id', `${id}input`);
+    // add estilo ao input
+    input.classList.add("input-editar");
+    // mostrando o input na tela
+    div.appendChild(input);
+    // capturando o texto da tarefa
+    let valorTexto = document.getElementById(`${id}texto`).innerText;
+    // escondendo o texto da tarefa
+    document.getElementById(`${id}texto`).innerHTML = '';
+    // jogando o texto da tarefa para dentro do input
+    input.value = valorTexto;
+    let spabtn = selectId(`${id}btn`);
+
+    // criando um botão pra enviar a atualização pro servidor
+    let bt = document.createElement("button");
+    //add estilo ao input
+    bt.classList.add("buttons-tarefas");
+    bt.setAttribute('onclick', `enviarTarefaEditada(${id})`);
+    // criando uma tag img
+    let imgbt = document.createElement("img");
+    // add estilo ao img
+    imgbt.classList.add("img-tarefas");
+    imgbt.setAttribute('src', './assets/send.png');
+    bt.appendChild(imgbt);
+    // colocando o botão na tela
+    spabtn.appendChild(bt);
+
+
+}
+
+
+function enviarTarefaEditada(id) {
+
+    let campoTarefa = selectId(`${id}input`).value;
+    console.log(campoTarefa);
+
+    let tarefas = {
+        "description": campoTarefa,
+        "completed": false
+    }
 
 
     const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
@@ -291,14 +356,15 @@ function EditarTarefa(id) {
             "accept": "application/json",
             authorization: token,
             "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify(tarefas)
     });
 
     promessa
         .then(function(Response) {
             console.log(Response["status"]);
             if (Response["status"] < 300) {
-                selectId("legenda-tarefa").innerHTML = `Tarefa atualizada 😚`;
+                selectId("legenda-tarefa").innerHTML = `Tarefa deletada 😢`;
             } else if (Response["status"] > 500) {
                 selectId("legenda-tarefa").innerHTML = `Erro no srvidor!😅`;
             }

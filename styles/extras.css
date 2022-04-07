@@ -1,165 +1,211 @@
-.box__externo {
-    display: flex;
-}
-
-
-/*cor login Aprovado*/
-
-.verde {
-    color: green;
-}
-
-
-/*mostrar email e id na tela de tarefas*/
-
-#dadosUser {
-    font-size: 12px;
-}
-
-.box__interno {
-    display: flex;
-    flex: auto;
-    justify-content: flex-end;
-}
-
-.img__logo {
-    width: 120px;
-    height: auto;
-    margin-top: 5px;
-    margin-left: 5px;
-}
-
-.icones__sociais {
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-.box__flex {
-    display: flex;
-}
-
-.box__externo__conteudo {
-    display: flex;
-    justify-content: center;
-}
-
-.logo__to {
-    width: 80%;
-    height: auto;
-}
-
-footer {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    width: 100%;
-    height: auto;
-}
-
-.p__footer {
-    color: #fff;
-    margin: 10px;
-    font-size: 13px;
-    padding-bottom: 10px;
-}
-
-
-/*Hover icones sociais header*/
-
-a.facebook:hover {
-    content: url(../assets/facebook_logo_dark__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-    text-decoration: none;
-    border-bottom: none;
-    padding: 0;
-}
-
-a.instagram:hover {
-    content: url(../assets/instagram_logo-dark__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-a.twitter:hover {
-    content: url(../assets/twitter_logo_dark__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-a.linkedin:hover {
-    content: url(../assets/linkedin_logo_dark__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-a.github:hover {
-    content: url(../assets/GitHub_logo_da__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-a.whatsapp:hover {
-    content: url(../assets/Whatsapp_logo_dark__1.png);
-    width: 33px;
-    height: auto;
-    margin: 15px 5px 5px 0px;
-}
-
-@media only screen and (max-width: 600px) {
-    .box__externo {
-        display: block;
-    }
-    .box__interno__mobile {
-        display: flex;
-        justify-content: center;
-    }
-    .box__flex {
-        display: block;
-    }
-    .left {
-        background-color: transparent;
-        margin: 0 auto;
-    }
-    .left img {
-        margin-top: 20px;
-        width: 60%;
-    }
-    .right {
-        margin: 0 auto;
-        width: 80%;
-    }
-    footer {
-        margin-top: 10px;
-    }
-    .ingressar__p {
-        background-color: transparent;
-        font-size: 0.8em;
-        color: var(--secondary);
-    }
-    .ingressar__p:hover {
-        background-color: transparent;
-    }
-    .p__footer {
-        font-size: 8.6px;
-    }
-    li {
-        color: #F22558;
-        font-size: 12px;
-    }
-}
-
-@media only screen and (max-width: 390px) {
-    .icones__sociais {
-        width: 30px;
-        margin: 8px 0px 0px 0px;
-    }
-    .box__flex {
-        display: block;
-        justify-content: center;
-    }
-}
+        .box__externo {
+            display: flex;
+        }
+        
+        .input-editar {
+            width: 50em;
+            padding: .4em .5em;
+            background-color: var(--app-grey);
+            border: 1px solid var(--app-grey);
+            border-radius: 1em;
+            color: #F22558;
+        }
+        
+         ::placeholder {
+            color: #f22558af;
+        }
+        
+        .input-editar:focus {
+            outline: none;
+            border: 1px solid lightgrey;
+        }
+        /*imagem carregando no index*/
+        
+        .img-carregando {
+            width: 3em;
+            height: auto;
+            margin-left: 1em;
+            margin-bottom: 1em;
+        }
+        /*imagem carregando em tarefas*/
+        
+        #img_carregando {
+            margin: 0 45%;
+            align-items: center;
+            padding: 1em;
+        }
+        /*mostrar email e id na tela de tarefas*/
+        
+        #dadosUser {
+            font-size: 12px;
+        }
+        
+        .box__interno {
+            display: flex;
+            flex: auto;
+            justify-content: flex-end;
+        }
+        
+        .img__logo {
+            width: 120px;
+            height: auto;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+        
+        .icones__sociais {
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        .box__flex {
+            display: flex;
+        }
+        
+        .box__externo__conteudo {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .logo__to {
+            width: 80%;
+            height: auto;
+        }
+        
+        footer {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 100%;
+            height: auto;
+        }
+        
+        .p__footer {
+            color: #fff;
+            margin: 10px;
+            font-size: 13px;
+            padding-bottom: 10px;
+        }
+        /*Hover icones sociais header*/
+        
+        a.facebook:hover {
+            content: url(../assets/facebook_logo_dark__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+            text-decoration: none;
+            border-bottom: none;
+            padding: 0;
+        }
+        
+        a.instagram:hover {
+            content: url(../assets/instagram_logo-dark__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        a.twitter:hover {
+            content: url(../assets/twitter_logo_dark__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        a.linkedin:hover {
+            content: url(../assets/linkedin_logo_dark__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        a.github:hover {
+            content: url(../assets/GitHub_logo_da__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        a.whatsapp:hover {
+            content: url(../assets/Whatsapp_logo_dark__1.png);
+            width: 33px;
+            height: auto;
+            margin: 15px 5px 5px 0px;
+        }
+        
+        @media only screen and (max-width: 1078px) {
+            .input-editar {
+                width: 30em;
+            }
+        }
+        
+        @media only screen and (max-width: 762px) {
+            .input-editar {
+                width: 20em;
+            }
+        }
+        
+        @media only screen and (max-width: 600px) {
+            .input-editar {
+                width: 15em;
+            }
+            .box__externo {
+                display: block;
+            }
+            .box__interno__mobile {
+                display: flex;
+                justify-content: center;
+            }
+            .box__flex {
+                display: block;
+            }
+            .left {
+                background-color: transparent;
+                margin: 0 auto;
+            }
+            .left img {
+                margin-top: 20px;
+                width: 60%;
+            }
+            .right {
+                margin: 0 auto;
+                width: 80%;
+            }
+            footer {
+                margin-top: 10px;
+            }
+            .ingressar__p {
+                background-color: transparent;
+                font-size: 0.8em;
+                color: var(--secondary);
+            }
+            .ingressar__p:hover {
+                background-color: transparent;
+            }
+            .p__footer {
+                font-size: 8.6px;
+            }
+            li {
+                color: #F22558;
+                font-size: 12px;
+            }
+        }
+        
+        @media only screen and (max-width: 482px) {
+            .input-editar {
+                width: 8em;
+            }
+        }
+        
+        @media only screen and (max-width: 390px) {
+            .input-editar {
+                width: 10em;
+            }
+            .icones__sociais {
+                width: 30px;
+                margin: 8px 0px 0px 0px;
+            }
+            .box__flex {
+                display: block;
+                justify-content: center;
+            }
+        }

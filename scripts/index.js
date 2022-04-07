@@ -51,10 +51,20 @@ form.addEventListener("submit", function(event) {
             .then(function(Response) {
                 console.log(Response["status"]);
                 if (Response["status"] < 300) {
+
+                    // colocando uma immagem de carregando na tela de login
+                    let imgCarregando = document.createElement("img");
+                    imgCarregando.classList.add("img-carregando");
+                    imgCarregando.setAttribute('src', './assets/carregando.gif');
+                    let div = selectId("div__erros");
+                    div.appendChild(imgCarregando);
+                    // mostrando menssagem de login aprovado
+                    selectId("erroForm").innerHTML += `<li><b>Login Aprovado!</b> </li>`;
+
+                    // redirecionando pra tela de tarefas
                     setTimeout(function() {
-                        selectId("erroForm").innerHTML += `<li class="verde"> <b>Login Aprovado!</b> </li>`;
                         window.location = 'tarefas.html';
-                    }, 3000);
+                    }, 5000);
                 } else if (Response["status"] === 400) {
                     selectId("erroForm").innerHTML += `<li> <b>Senha incorreta!</b> </li>`;
                 } else if (Response["status"] === 404) {

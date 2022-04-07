@@ -45,6 +45,7 @@ input {
     background-color: var(--app-grey);
     border: 1px solid var(--app-grey);
     border-radius: 1em;
+    color: #F22558;
 }
 
 ::placeholder {
@@ -129,8 +130,10 @@ button {
 li {
     color: #F22558;
     font-size: 14px;
+    list-style-type: none;
 }
 
 .div__erros {
-    margin-top: 15px;
+    padding: 10px;
+    margin: 0 auto;
 }

@@ -40,6 +40,7 @@
                 <div class="dropdown-content">
                     <p class="menu" id="dadosUser"></p>
                     <p class="menu" id="closeApp">Finalizar sessão</p>
+
                 </div>
             </div>
             <div class="user-image">
@@ -50,6 +51,11 @@
         </div>
     </header>
     <p id="legenda-tarefa"></p>
+    <div id="img_carregando">
+
+    </div>
+
+
     <form class="nova-tarefa">
 
         <div class="not-done"></div>
@@ -60,10 +66,17 @@
     </form>
 
     <ul class="tarefas-pendentes">
-
         <div id="skeleton" class="skeleton">
+            <li class="tarefa">
+                <div class="not-done"></div>
+                <div class="descricao">
+                    <span><p class="nome">Nova tarefa</p></span>
+                    <p class="timestamp">Criada em: 15/07/21</p>
+                </div>
+                <button class="buttons-tarefas"><img class="img-tarefas" src="./assets/delete.svg"></button>
+                <button class="buttons-tarefas"><img class="img-tarefas" src="./assets/editar.svg"></button>
 
-
+            </li>
         </div>
     </ul>
 
@@ -72,6 +85,8 @@
 
     </ul>
     <script src="./scripts/tarefas.js"></script>
+    <script>
+    </script>
     <footer>
         <section class="box__externo__conteudo">
             <img class="img__logo" src="./assets/logo__Lauro__2__novo.png">
