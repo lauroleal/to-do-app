@@ -148,88 +148,148 @@ function recuperarTarefas() {
         .then(function(retorno) {
             console.log(retorno);
             const arrayTarefas = retorno;
-
             arrayTarefas.forEach(function(element) {
+                if (element.completed === false) {
+                    // capturando o status da tarefa
+                    let status = element.completed;
 
-                // capturando o status da tarefa
-                let status = element.completed;
+                    // Formatando a data
+                    let dataCriacao = element.createdAt;
+                    dataCriacao = new Date();
+                    let dia = dataCriacao.getDate().toString().padStart(2, '0'),
+                        mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
+                        ano = dataCriacao.getFullYear().toString().substr(-2);
+                    let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
 
-                // Formatando a data
-                let dataCriacao = element.createdAt;
-                dataCriacao = new Date();
-                let dia = dataCriacao.getDate().toString().padStart(2, '0'),
-                    mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
-                    ano = dataCriacao.getFullYear().toString().substr(-2);
-                let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
+                    // capturando a descricao da tarefa
+                    let descricao = element.description;
+                    // capturando o id da tarefa
+                    let idTarefa = element.id;
 
-                // capturando a descricao da tarefa
-                let descricao = element.description;
-                // capturando o id da tarefa
-                let idTarefa = element.id;
+                    // selecionando a div com a id skeleton
+                    let div = document.getElementById('skeleton');
+                    // criando uma tag li
+                    let li = document.createElement("li");
+                    // atribuido a class tarefa na tag li
+                    li.classList.add("tarefa");
+                    // criando uma tag div
+                    let divDone = document.createElement("div");
+                    // atribuido a class not-done na tag div
+                    divDone.classList.add("not-done");
+                    // criando outra tag div
+                    let divDesc = document.createElement("div");
+                    // atribuido a class descricao na tag div
+                    divDesc.classList.add("descricao");
+                    //###########3 testando
+                    divDesc.setAttribute('id', `descr${idTarefa}`);
+                    // criando a tag p
+                    let pNome = document.createElement("p");
+                    // atribuido a class nome na tag p
+                    pNome.classList.add("nome");
+                    // add a descrição da tarefa na tag p
+                    let texDesc = document.createTextNode(descricao);
+                    pNome.appendChild(texDesc);
+                    pNome.setAttribute('id', `pnome${idTarefa}`);
+                    // criando a tag p
+                    let pTempo = document.createElement("p");
 
-                // selecionando a div com a id skeleton
-                let div = document.getElementById('skeleton');
-                // criando uma tag li
-                let li = document.createElement("li");
-                // atribuido a class tarefa na tag li
-                li.classList.add("tarefa");
-                // criando uma tag div
-                let divDone = document.createElement("div");
-                // atribuido a class not-done na tag div
-                divDone.classList.add("not-done");
-                // criando outra tag div
-                let divDesc = document.createElement("div");
-                // atribuido a class descricao na tag div
-                divDesc.classList.add("descricao");
-                //###########3 testando
-                divDesc.setAttribute('id', `descr${idTarefa}`);
-                // criando a tag p
-                let pNome = document.createElement("p");
-                // atribuido a class nome na tag p
-                pNome.classList.add("nome");
-                // add a descrição da tarefa na tag p
-                let texDesc = document.createTextNode(descricao);
-                pNome.appendChild(texDesc);
-                pNome.setAttribute('id', `pnome${idTarefa}`);
-                // criando a tag p
-                let pTempo = document.createElement("p");
+                    // atribuido a class timestamp na tag p
+                    pTempo.classList.add("timestamp");
+                    pTempo.setAttribute('id', `datatarefa${idTarefa}`);
+                    // add a data da descricao na tag p
+                    let texdata = document.createTextNode(dataFormatada);
+                    pTempo.appendChild(texdata);
 
-                // atribuido a class timestamp na tag p
-                pTempo.classList.add("timestamp");
-                pTempo.setAttribute('id', `datatarefa${idTarefa}`);
-                // add a data da descricao na tag p
-                let texdata = document.createTextNode(dataFormatada);
-                pTempo.appendChild(texdata);
+                    // os botoes editar e deletar + classs + atributos
+                    let butaoDel = document.createElement("button");
+                    butaoDel.classList.add("buttons-tarefas");
+                    butaoDel.setAttribute('onclick', `deletarTarefa(${idTarefa})`);
 
-                // os botoes editar e deletar + classs + atributos
-                let butaoDel = document.createElement("button");
-                butaoDel.classList.add("buttons-tarefas");
-                butaoDel.setAttribute('onclick', `deletarTarefa(${idTarefa})`);
+                    let butaoEdit = document.createElement("button");
+                    butaoEdit.classList.add("buttons-tarefas");
+                    butaoEdit.setAttribute('onclick', `EditarTarefa(${idTarefa})`);
 
-                let butaoEdit = document.createElement("button");
-                butaoEdit.classList.add("buttons-tarefas");
-                butaoEdit.setAttribute('onclick', `EditarTarefa(${idTarefa})`);
+                    let imgDel = document.createElement("img");
+                    imgDel.classList.add("img-tarefas");
+                    imgDel.setAttribute('src', './assets/delete.svg');
 
-                let imgDel = document.createElement("img");
-                imgDel.classList.add("img-tarefas");
-                imgDel.setAttribute('src', './assets/delete.svg');
-
-                let imgEdit = document.createElement("img");
-                imgEdit.classList.add("img-tarefas");
-                imgEdit.setAttribute('src', './assets/editar.svg');
+                    let imgEdit = document.createElement("img");
+                    imgEdit.classList.add("img-tarefas");
+                    imgEdit.setAttribute('src', './assets/editar.svg');
 
 
-                // jogando tudo na tela
-                divDesc.appendChild(pNome);
-                divDesc.appendChild(pTempo);
-                divDone.appendChild(divDesc);
-                butaoDel.appendChild(imgDel);
-                butaoEdit.appendChild(imgEdit);
-                li.appendChild(divDone);
-                li.appendChild(divDesc);
-                li.appendChild(butaoDel);
-                li.appendChild(butaoEdit);
-                div.appendChild(li);
+                    // jogando tudo na tela
+                    divDesc.appendChild(pNome);
+                    divDesc.appendChild(pTempo);
+                    divDone.appendChild(divDesc);
+                    butaoDel.appendChild(imgDel);
+                    butaoEdit.appendChild(imgEdit);
+                    li.appendChild(divDone);
+                    li.appendChild(divDesc);
+                    li.appendChild(butaoDel);
+                    li.appendChild(butaoEdit);
+                    div.appendChild(li);
+                } else {
+                    // capturando o status da tarefa
+                    let status = element.completed;
+
+                    // Formatando a data
+                    let dataCriacao = element.createdAt;
+                    dataCriacao = new Date();
+                    let dia = dataCriacao.getDate().toString().padStart(2, '0'),
+                        mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
+                        ano = dataCriacao.getFullYear().toString().substr(-2);
+                    let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
+
+                    // capturando a descricao da tarefa
+                    let descricao = element.description;
+                    // capturando o id da tarefa
+                    let idTarefa = element.id;
+
+                    // selecionando a ul com a id tarefas-terminadas
+                    let div = document.getElementById('tarefas-terminadas');
+                    // criando uma tag li
+                    let li = document.createElement("li");
+                    // atribuido a class tarefa na tag li
+                    li.classList.add("tarefa");
+                    // criando uma tag div
+                    let divDone = document.createElement("div");
+                    // atribuido a class not-done na tag div
+                    divDone.classList.add("not-done");
+                    // criando outra tag div
+                    let divDesc = document.createElement("div");
+                    // atribuido a class descricao na tag div
+                    divDesc.classList.add("descricao");
+                    //###########3 testando
+                    divDesc.setAttribute('id', `descr${idTarefa}`);
+                    // criando a tag p
+                    let pNome = document.createElement("p");
+                    // atribuido a class nome na tag p
+                    pNome.classList.add("nome");
+                    // add a descrição da tarefa na tag p
+                    let texDesc = document.createTextNode(descricao);
+                    pNome.appendChild(texDesc);
+                    pNome.setAttribute('id', `pnome${idTarefa}`);
+                    // criando a tag p
+                    let pTempo = document.createElement("p");
+
+                    // atribuido a class timestamp na tag p
+                    pTempo.classList.add("timestamp");
+                    pTempo.setAttribute('id', `datatarefa${idTarefa}`);
+                    // add a data da descricao na tag p
+                    let texdata = document.createTextNode(dataFormatada);
+                    pTempo.appendChild(texdata);
+
+                    // jogando tudo na tela
+                    divDesc.appendChild(pNome);
+                    divDesc.appendChild(pTempo);
+                    divDone.appendChild(divDesc);
+                    li.appendChild(divDone);
+                    li.appendChild(divDesc);
+                    div.appendChild(li);
+                }
+
+
             })
 
             setTimeout(function() {
