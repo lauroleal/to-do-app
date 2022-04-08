@@ -218,6 +218,17 @@ a {
     margin: 0 auto;
 }
 
+
+/* Para o campo busca */
+
+.tarefas-pendentes-busca {
+    display: flex;
+    flex-direction: column;
+    width: 79%;
+    list-style: none;
+    margin: 2em 11%;
+}
+
 .tarefa {
     display: flex;
     align-items: center;
@@ -287,6 +298,41 @@ a {
 .skeleton>.tarefa .timestamp {
     font-size: .9em;
     color: lightgrey;
+}
+
+
+/* Buscar uma tarefas ----------------------------------------------------------- */
+
+.buscar-tarefa {
+    position: relative;
+    width: 8em;
+    padding: .8em 1em;
+    background-color: white;
+    border-radius: 2em;
+    border-color: #f22558b0;
+    box-shadow: 3px 3px 5px lightgrey;
+    color: rgb(170, 170, 170);
+    font-weight: 400;
+    font-size: 1.1em;
+    margin-left: calc(15% - 4em);
+    z-index: 20;
+}
+
+.buscar-tarefa:focus {
+    border-color: 1px solid #f22558b0;
+    outline: none;
+}
+
+.img-procurar {
+    width: 3.3em;
+    height: auto;
+    cursor: pointer;
+}
+
+#menssagemBusca {
+    color: #f22558b0;
+    text-align: center;
+    margin: 0 auto;
 }
 
 

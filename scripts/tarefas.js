@@ -182,7 +182,7 @@ function recuperarTarefas() {
                 // atribuido a class descricao na tag div
                 divDesc.classList.add("descricao");
                 //###########3 testando
-                divDesc.setAttribute('id', `${idTarefa}div`);
+                divDesc.setAttribute('id', `descr${idTarefa}`);
                 // criando a tag p
                 let pNome = document.createElement("p");
                 // atribuido a class nome na tag p
@@ -190,13 +190,13 @@ function recuperarTarefas() {
                 // add a descrição da tarefa na tag p
                 let texDesc = document.createTextNode(descricao);
                 pNome.appendChild(texDesc);
-                pNome.setAttribute('id', `${idTarefa}texto`);
+                pNome.setAttribute('id', `pnome${idTarefa}`);
                 // criando a tag p
                 let pTempo = document.createElement("p");
 
                 // atribuido a class timestamp na tag p
                 pTempo.classList.add("timestamp");
-                pTempo.setAttribute('id', `${idTarefa}data`);
+                pTempo.setAttribute('id', `datatarefa${idTarefa}`);
                 // add a data da descricao na tag p
                 let texdata = document.createTextNode(dataFormatada);
                 pTempo.appendChild(texdata);
@@ -252,8 +252,6 @@ function recuperarTarefas() {
 
 //############################### $$ Deletar as tarefas $$ ###############################
 
-
-
 function confirmarDeletarTarefa(id) {
 
     const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
@@ -298,22 +296,22 @@ function confirmarDeletarTarefa(id) {
 function EditarTarefa(id) {
 
     // selecionando  a div que é criada a nova tarefa
-    let div = selectId(`${id}div`);
+    let div = selectId(`descr${id}`);
     // criando uma nova tag input
     let input = document.createElement("input");
     // atribuido uma id pata a nova tag input
-    input.setAttribute('id', `${id}input`);
+    input.setAttribute('id', `inputeditar${id}`);
     // add estilo ao input
     input.classList.add("input-editar");
     // mostrando o input na tela
     div.appendChild(input);
     // capturando o texto da tarefa
-    let valorTexto = document.getElementById(`${id}texto`).innerText;
+    let valorTexto = document.getElementById(`pnome${id}`).innerText;
 
     // capturando os valores se cancelar
-    let textoDaTarefa = selectId(`${id}texto`).innerText;
+    let textoDaTarefa = selectId(`pnome${id}`).innerText;
     console.log(textoDaTarefa);
-    let data = selectId(`${id}data`).innerText;
+    let data = selectId(`datatarefa${id}`).innerText;
     console.log(data);
 
     // pra ter de onde tirar os dados 😑
@@ -321,22 +319,22 @@ function EditarTarefa(id) {
     sessionStorage.setItem("texto", textoDaTarefa);
 
     // escondendo o texto da tarefa e da data
-    document.getElementById(`${id}texto`).innerHTML = '';
-    document.getElementById(`${id}data`).innerHTML = '';
+    document.getElementById(`pnome${id}`).innerHTML = '';
+    document.getElementById(`datatarefa${id}`).innerHTML = '';
     // jogando o texto da tarefa para dentro do input
     input.value = valorTexto;
 
     // criando um botão pra enviar a atualização pro servidor
     let bt = document.createElement("button");
     bt.setAttribute('onclick', `enviarTarefaEditada(${id})`);
-    bt.setAttribute('id', `${id}bt`);
+    bt.setAttribute('id', `btenviar${id}`);
     //add estilo ao input
     bt.classList.add("buttons-tarefas");
 
     // criando um botão cancelar a atualização
     let btCancel = document.createElement("button");
     btCancel.setAttribute('onclick', `cancelarEdicao(${id})`);
-    btCancel.setAttribute('id', `${id}btCancel`);
+    btCancel.setAttribute('id', `btcancel${id}`);
     //add estilo ao input
     btCancel.classList.add("buttons-tarefas");
 
@@ -346,7 +344,7 @@ function EditarTarefa(id) {
     // add estilo ao img
     imgbt.classList.add("img-tarefas");
     imgbt.setAttribute('src', './assets/send.png');
-    imgbt.setAttribute('id', `${id}imgbt`);
+    imgbt.setAttribute('id', `imgbt${id}`);
     imgbt.setAttribute('alt', 'Salvar edição');
     bt.appendChild(imgbt);
     // colocando o botão na tela
@@ -358,7 +356,7 @@ function EditarTarefa(id) {
     // add estilo ao img
     imgCancela.classList.add("img-tarefas-botoesx");
     imgCancela.setAttribute('src', './assets/fechar__imput.png');
-    imgCancela.setAttribute('id', `${id}imgCancela`);
+    imgCancela.setAttribute('id', `imgCancela${id}`);
     imgCancela.setAttribute('alt', 'Cancelar edição');
     btCancel.appendChild(imgCancela);
     // colocando o botão na tela
@@ -372,22 +370,22 @@ function cancelarEdicao(id) {
     let data = sessionStorage.getItem("data");
     let textoDaTarefa = sessionStorage.getItem("texto");
     // mostrando o texto da tarefa e da data novamente na tela
-    document.getElementById(`${id}texto`).innerHTML = textoDaTarefa;
-    document.getElementById(`${id}data`).innerHTML = data;
+    document.getElementById(`pnome${id}`).innerHTML = textoDaTarefa;
+    document.getElementById(`datatarefa${id}`).innerHTML = data;
     // removendo o input
-    const input = document.getElementById(`${id}input`);
+    const input = document.getElementById(`inputeditar${id}`);
     input.parentNode.removeChild(input);
     // removendo imagem enviar
-    const imgEn = document.getElementById(`${id}imgbt`);
+    const imgEn = document.getElementById(`imgbt${id}`);
     imgEn.parentNode.removeChild(imgEn);
     // removendo imagem cancelar
-    const imgCan = document.getElementById(`${id}imgCancela`);
+    const imgCan = document.getElementById(`imgCancela${id}`);
     imgCan.parentNode.removeChild(imgCan);
     // removendo botão enviar
-    const bt = document.getElementById(`${id}bt`);
+    const bt = document.getElementById(`btenviar${id}`);
     bt.parentNode.removeChild(bt);
     // removendo botão cancelar
-    const btCancel = document.getElementById(`${id}btCancel`);
+    const btCancel = document.getElementById(`btcancel${id}`);
     btCancel.parentNode.removeChild(btCancel);
 }
 
@@ -395,7 +393,7 @@ function cancelarEdicao(id) {
 
 function enviarTarefaEditada(id) {
 
-    let campoTarefa = selectId(`${id}input`).value;
+    let campoTarefa = selectId(`inputeditar${id}`).value;
     console.log(campoTarefa);
 
     let tarefas = {
@@ -443,12 +441,28 @@ function enviarTarefaEditada(id) {
         });
 }
 
-//############################### $$ Recuperar as tarefas $$ ###############################
+//############################### $$ Recuperar as tarefas por ID $$ ###############################
+
+// tratando campo vazio
+function recuperarTarefa() {
+    const inputId = selectId('idDaTarefa').value;
+    if (inputId === '') {
+        selectId("menssagemBusca").innerHTML = `O campo busca está vazio!`;
+        setTimeout(function() {
+            selectId("menssagemBusca").innerHTML = ``;
+        }, 4000);
+    } else {
+        selectId('idDaTarefa').value = '';
+        recuperarTarefaPorID(inputId);
+    }
+
+
+}
+
 function recuperarTarefaPorID(id) {
 
     const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
     const token = localStorage.getItem('token');
-
     const promessa = fetch(url, {
         method: "GET",
         headers: {
@@ -460,25 +474,23 @@ function recuperarTarefaPorID(id) {
     promessa
         .then(function(Response) {
             if (Response["status"] < 300) {
-                selectId("legenda-tarefa").innerHTML = `Tarefa localizada!😀`;
-            } else if (Response["status"] === 400) {
-                selectId("legenda-tarefa").innerHTML = `ID inválido!`;
+                selectId("menssagemBusca").innerHTML = `Tarefa localizada!😀`;
+                sessionStorage.setItem("continua", "true");
+            } else if (Response["status"] > 400 || Response["status"] < 500) {
+                selectId("menssagemBusca").innerHTML = `Essa tarefa não existe! 😯`;
+                sessionStorage.setItem("continua", "false");
             } else if (Response["status"] > 500) {
-                selectId("legenda-tarefa").innerHTML = `Erro no servidor!😅`;
+                selectId("menssagemBusca").innerHTML = `Erro no servidor!😅`;
+                sessionStorage.setItem("continua", "false");
             }
             return Response.json();
         })
         .then(function(retorno) {
-            console.log(retorno);
-            const arrayTarefas = retorno;
-
-            arrayTarefas.forEach(function(element) {
-
-                // capturando o status da tarefa
-                let status = element.completed;
+            let continua = sessionStorage.getItem("continua");
+            if (continua === "true") {
 
                 // Formatando a data
-                let dataCriacao = element.createdAt;
+                let dataCriacao = retorno.createdAt;
                 dataCriacao = new Date();
                 let dia = dataCriacao.getDate().toString().padStart(2, '0'),
                     mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
@@ -486,12 +498,12 @@ function recuperarTarefaPorID(id) {
                 let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
 
                 // capturando a descricao da tarefa
-                let descricao = element.description;
+                let descricao = retorno.description;
                 // capturando o id da tarefa
-                let idTarefa = element.id;
+                let idTarefa = retorno.id;
 
                 // selecionando a div com a id skeleton
-                let div = document.getElementById('skeleton');
+                let div = document.getElementById('resultadoBusca');
                 // criando uma tag li
                 let li = document.createElement("li");
                 // atribuido a class tarefa na tag li
@@ -505,7 +517,7 @@ function recuperarTarefaPorID(id) {
                 // atribuido a class descricao na tag div
                 divDesc.classList.add("descricao");
                 //###########3 testando
-                divDesc.setAttribute('id', `${idTarefa}div`);
+                divDesc.setAttribute('id', `divbusca${idTarefa}`);
                 // criando a tag p
                 let pNome = document.createElement("p");
                 // atribuido a class nome na tag p
@@ -513,13 +525,13 @@ function recuperarTarefaPorID(id) {
                 // add a descrição da tarefa na tag p
                 let texDesc = document.createTextNode(descricao);
                 pNome.appendChild(texDesc);
-                pNome.setAttribute('id', `${idTarefa}texto`);
+                pNome.setAttribute('id', `buscatexto${idTarefa}`);
                 // criando a tag p
                 let pTempo = document.createElement("p");
 
                 // atribuido a class timestamp na tag p
                 pTempo.classList.add("timestamp");
-                pTempo.setAttribute('id', `${idTarefa}data`);
+                pTempo.setAttribute('id', `databusca${idTarefa}`);
                 // add a data da descricao na tag p
                 let texdata = document.createTextNode(dataFormatada);
                 pTempo.appendChild(texdata);
@@ -527,11 +539,11 @@ function recuperarTarefaPorID(id) {
                 // os botoes editar e deletar + classs + atributos
                 let butaoDel = document.createElement("button");
                 butaoDel.classList.add("buttons-tarefas");
-                butaoDel.setAttribute('onclick', `deletarTarefa(${idTarefa})`);
+                butaoDel.setAttribute('onclick', `deletarTarefaBusca(${idTarefa})`);
 
                 let butaoEdit = document.createElement("button");
                 butaoEdit.classList.add("buttons-tarefas");
-                butaoEdit.setAttribute('onclick', `EditarTarefa(${idTarefa})`);
+                butaoEdit.setAttribute('onclick', `EditarTarefaBusca(${idTarefa})`);
 
                 let imgDel = document.createElement("img");
                 imgDel.classList.add("img-tarefas");
@@ -553,20 +565,178 @@ function recuperarTarefaPorID(id) {
                 li.appendChild(butaoDel);
                 li.appendChild(butaoEdit);
                 div.appendChild(li);
-            })
 
-            setTimeout(function() {
-                // removendo a menssagem da tela
-                selectId("legenda-tarefa").innerHTML = '';
-                const removerImg = document.getElementById("img_carregando");
-                removerImg.removeChild(removerImg.firstElementChild);
-                // removendo o efeito de tarefas carregando
-                selectId("skeleton").classList.remove("skeleton");
-            }, 4000);
+                setTimeout(function() {
+                    // removendo a menssagem da tela
+                    selectId("menssagemBusca").innerHTML = '';
+                }, 4000);
+
+            } else {
+                setTimeout(function() {
+                    // removendo a menssagem da tela
+                    selectId("menssagemBusca").innerHTML = '';
+                }, 4000);
+            }
 
         })
         .catch(function(err) {
             console.log(err);
         });
 
+}
+
+function deletarTarefaBusca(id) {
+    deletarTarefa(id);
+}
+
+
+function EditarTarefaCampoB(id) {
+
+    // selecionando  a div que é criada a nova tarefa
+    let div = selectId(`divbusca${id}`);
+    // criando uma nova tag input
+    let input = document.createElement("input");
+    // atribuido uma id pata a nova tag input
+    input.setAttribute('id', `input${id}`);
+    // add estilo ao input
+    input.classList.add("input-editar");
+    // mostrando o input na tela
+    div.appendChild(input);
+    // capturando o texto da tarefa
+    let valorTexto = document.getElementById(`pnome${id}`).innerText;
+
+    // capturando os valores se cancelar
+    let textoDaTarefab = selectId(`buscatexto${id}`).innerText;
+    let datab = selectId(`databusca${id}`).innerText;
+
+    // pra ter de onde tirar os dados 😑
+    sessionStorage.setItem("datab", datab);
+    sessionStorage.setItem("textob", textoDaTarefab);
+
+    // escondendo o texto da tarefa e da data
+    document.getElementById(`buscatexto${id}`).innerHTML = '';
+    document.getElementById(`databusca${id}`).innerHTML = '';
+    // jogando o texto da tarefa para dentro do input
+    input.value = valorTexto;
+
+    // criando um botão pra enviar a atualização pro servidor
+    let bt = document.createElement("button");
+    bt.setAttribute('onclick', `enviarTarefaEditadaBusca(${id})`);
+    bt.setAttribute('id', `btenviarb${id}`);
+    //add estilo ao input
+    bt.classList.add("buttons-tarefas");
+
+    // criando um botão cancelar a atualização
+    let btCancel = document.createElement("button");
+    btCancel.setAttribute('onclick', `cancelarEdicaoBusca(${id})`);
+    btCancel.setAttribute('id', `btcancelb${id}`);
+    //add estilo ao input
+    btCancel.classList.add("buttons-tarefas");
+
+    //############# Botão enviar edição
+    // criando uma tag img
+    let imgbt = document.createElement("img");
+    // add estilo ao img
+    imgbt.classList.add("img-tarefas");
+    imgbt.setAttribute('src', './assets/send.png');
+    imgbt.setAttribute('id', `imgbtb${id}`);
+    imgbt.setAttribute('alt', 'Salvar edição');
+    bt.appendChild(imgbt);
+    // colocando o botão na tela
+    div.appendChild(bt);
+
+    //############# Botão cancelar edição
+    // criando uma tag img
+    let imgCancela = document.createElement("img");
+    // add estilo ao img
+    imgCancela.classList.add("img-tarefas-botoesx");
+    imgCancela.setAttribute('src', './assets/fechar__imput.png');
+    imgCancela.setAttribute('id', `imgCancelab${id}`);
+    imgCancela.setAttribute('alt', 'Cancelar edição');
+    btCancel.appendChild(imgCancela);
+    // colocando o botão na tela
+    div.appendChild(btCancel);
+
+}
+
+function EditarTarefaBusca(id) {
+    EditarTarefaCampoB(id);
+}
+
+//############################### $$ Cancelar edição da tarefa Busca Id $$ ###############################
+
+function cancelarEdicaoBusca(id) {
+    let datab = sessionStorage.getItem("datab");
+    let textoDaTarefab = sessionStorage.getItem("textob");
+    // mostrando o texto da tarefa e da data novamente na tela
+    document.getElementById(`buscatexto${id}`).innerHTML = textoDaTarefab;
+    document.getElementById(`databusca${id}`).innerHTML = datab;
+    // removendo o input
+    const input = document.getElementById(`input${id}`);
+    input.parentNode.removeChild(input);
+    // removendo imagem enviar
+    const imgEn = document.getElementById(`imgbtb${id}`);
+    imgEn.parentNode.removeChild(imgEn);
+    // removendo imagem cancelar
+    const imgCan = document.getElementById(`imgCancelab${id}`);
+    imgCan.parentNode.removeChild(imgCan);
+    // removendo botão enviar
+    const bt = document.getElementById(`btenviarb${id}`);
+    bt.parentNode.removeChild(bt);
+    // removendo botão cancelar
+    const btCancel = document.getElementById(`btcancelb${id}`);
+    btCancel.parentNode.removeChild(btCancel);
+}
+
+
+//############################### $$ Enviar a tarefa editada Busca Id $$ ###############################
+
+function enviarTarefaEditadaBusca(id) {
+
+    let campoTarefa = selectId(`input${id}`).value;
+    console.log(campoTarefa);
+
+    let tarefas = {
+        "description": campoTarefa,
+        "completed": false
+    }
+
+
+    const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
+    const token = localStorage.getItem('token');
+
+    const promessa = fetch(url, {
+        method: "PUT",
+        headers: {
+            "accept": "application/json",
+            authorization: token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tarefas)
+    });
+
+    promessa
+        .then(function(Response) {
+            console.log(Response["status"]);
+            if (Response["status"] < 300) {
+                selectId("menssagemBusca").innerHTML = `Tarefa atualizada!😉`;
+            } else if (Response["status"] > 500) {
+                selectId("menssagemBusca").innerHTML = `Erro no servidor!😅`;
+            }
+            return Response.json();
+        })
+        .then(function(retorno) {
+            console.log(retorno);
+
+            setTimeout(function() {
+                selectId("menssagemBusca").innerHTML = '';
+            }, 4000);
+
+            //atualizando as tarefas
+            location.reload();
+
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
 }

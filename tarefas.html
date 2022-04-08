@@ -74,6 +74,21 @@
                 <p class="timestamp" id="5804data">Criada em: 08/04/22</p>
             </div>
     </ul>
+    <div class="box__externo">
+        <input class="buscar-tarefa" placeholder="Buscar tarefa" id="idDaTarefa">
+        <img class="img-procurar" src="./assets/procurar.svg" onclick="recuperarTarefa()">
+        <span id="menssagemBusca"></span>
+    </div>
+    <ul class="tarefas-pendentes-busca" id="resultadoBusca">
+        <li class="tarefa">
+            <div class="not-done"></div>
+            <div class="descricao" id="5804div">
+                <p class="nome" id="5804texto">tarefa 2</p>
+                <p class="timestamp" id="5804data">Criada em: 08/04/22</p>
+            </div>
+    </ul>
+
+
     <script src="./scripts/tarefas.js"></script>
     <script>
         // menssagem de confirmação de exclusão de tarefas fonte: https://sweetalert2.github.io/ 
