@@ -67,7 +67,7 @@
  }
  
  .img__logo {
-     width: 120px;
+     width: 100px;
      height: auto;
      margin-top: 5px;
      margin-left: 5px;
@@ -97,6 +97,7 @@
      background: linear-gradient(90deg, var(--primary), var(--secondary));
      width: 100%;
      height: auto;
+     bottom: 0px;
  }
  
  .p__footer {

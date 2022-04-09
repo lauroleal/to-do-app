@@ -158,11 +158,13 @@ function recuperarTarefas() {
 
                     // Formatando a data
                     let dataCriacao = element.createdAt;
+
                     dataCriacao = new Date();
                     let dia = dataCriacao.getDate().toString().padStart(2, '0'),
                         mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
                         ano = dataCriacao.getFullYear().toString().substr(-2);
                     let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
+
 
                     // capturando a descricao da tarefa
                     let descricao = element.description;
