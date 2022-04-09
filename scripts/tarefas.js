@@ -50,7 +50,6 @@ form.addEventListener("submit", function(event) {
     // limpar a menssagem
     selectId("legenda-tarefa").innerHTML = '';
     const tarefa = selectId("novaTarea").value;
-    console.log(tarefa);
 
     // validando se o campo nova tarefa foi preenchido
     function campoVazio(campo) {
@@ -87,13 +86,13 @@ form.addEventListener("submit", function(event) {
             .then(function(Response) {
                 console.log(Response["status"]);
                 if (Response["status"] < 300) {
-                    selectId("legenda-tarefa").innerHTML = `Tarefa cadastrado com sucesso!🤩`;
+                    selectId("legenda-tarefa").innerHTML = `Tarefa cadastrada!🤩`;
                 } else if (Response["status"] < 401) {
-                    selectId("legenda-tarefa").innerHTML = `Primeiro preencha o campo a baixo!🙄`;
+                    selectId("legenda-tarefa").innerHTML = `Preencha o campo!🙄`;
                 } else if (Response["status"] === 401) {
                     selectId("legenda-tarefa").innerHTML = `Não autorizado!👀`;
                 } else if (Response["status"] > 500) {
-                    selectId("legenda-tarefa").innerHTML = `Tarefa não cadastrada!😅`;
+                    selectId("legenda-tarefa").innerHTML = `Erro no servidor!😅`;
                 }
                 return Response.json();
             })
@@ -104,7 +103,7 @@ form.addEventListener("submit", function(event) {
                     //recarregando a pagina para atualizar as tarefas
                     location.reload();
 
-                }, 4000);
+                }, 3000);
 
             })
             .catch(function(err) {
@@ -143,8 +142,9 @@ function recuperarTarefas() {
                 selectId("legenda-tarefa").innerHTML = `Carregando as tarefas`;
             } else if (Response["status"] === 401) {
                 selectId("legenda-tarefa").innerHTML = `Erro de autorização!🙄`;
+                window.location = 'index.html';
             } else if (Response["status"] > 500) {
-                selectId("legenda-tarefa").innerHTML = `Erro ao recuperar as tarefas!😅`;
+                selectId("legenda-tarefa").innerHTML = `Erro no servidor!😅`;
             }
             return Response.json();
         })
@@ -325,6 +325,7 @@ function recuperarTarefas() {
                 removerImg.removeChild(removerImg.firstElementChild);
                 // removendo o efeito de tarefas carregando
                 selectId("skeleton").classList.remove("skeleton");
+                selectId("tarefas-terminadas").classList.remove("terminou");
             }, 4000);
 
         })
@@ -396,9 +397,7 @@ function EditarTarefa(id) {
 
     // capturando os valores se cancelar
     let textoDaTarefa = selectId(`pnome${id}`).innerText;
-    console.log(textoDaTarefa);
     let data = selectId(`datatarefa${id}`).innerText;
-    console.log(data);
 
     // pra ter de onde tirar os dados 😑
     sessionStorage.setItem("data", data);
@@ -480,7 +479,6 @@ function cancelarEdicao(id) {
 function enviarTarefaEditada(id) {
 
     let campoTarefa = selectId(`inputeditar${id}`).value;
-    console.log(campoTarefa);
 
     let tarefas = {
         "description": campoTarefa,
@@ -563,7 +561,7 @@ function recuperarTarefaPorID(id) {
                 selectId("menssagemBusca").innerHTML = `Tarefa localizada!😀`;
                 sessionStorage.setItem("continua", "true");
             } else if (Response["status"] > 400 || Response["status"] < 500) {
-                selectId("menssagemBusca").innerHTML = `Essa tarefa não existe! 😯`;
+                selectId("menssagemBusca").innerHTML = `Essa tarefa não existe!😯`;
                 sessionStorage.setItem("continua", "false");
             } else if (Response["status"] > 500) {
                 selectId("menssagemBusca").innerHTML = `Erro no servidor!😅`;
@@ -899,4 +897,20 @@ function desMarcarTarefa(id) {
         .catch(function(err) {
             console.log(err);
         });
+}
+
+function deslogar() {
+
+    // limpando por que acho digno
+    sessionStorage.removeItem('dadosCadastro');
+    sessionStorage.removeItem('datab');
+    sessionStorage.removeItem('continua');
+    sessionStorage.removeItem('tarefaExiste');
+    sessionStorage.removeItem('textob');
+    sessionStorage.removeItem('texto');
+    sessionStorage.removeItem('data');
+    // deslogando..
+    localStorage.removeItem('token');
+    // mandando pra tela de login
+    window.location = 'index.html';
 }

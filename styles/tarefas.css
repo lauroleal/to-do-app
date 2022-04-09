@@ -332,7 +332,9 @@ a {
 #menssagemBusca {
     color: #f22558b0;
     text-align: center;
-    margin: 0 auto;
+    margin-left: 10%;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 
@@ -392,7 +394,33 @@ a {
     background-color: rgb(189, 189, 189);
 }
 
-.skeleton {
+.skeleton .tarefas-terminadas {
+    animation: trasparencia 1s infinite;
+}
+
+@keyframes trasparencia {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.terminou .descricao {
+    background-color: rgb(189, 189, 189);
+}
+
+.terminou p {
+    background-color: grey;
+    color: grey;
+}
+
+.terminou .not-done {
+    background-color: rgb(189, 189, 189);
+}
+
+.terminou {
     animation: trasparencia 1s infinite;
 }
 

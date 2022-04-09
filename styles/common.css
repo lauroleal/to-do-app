@@ -52,3 +52,11 @@ button {
     background: #F22558;
     border-radius: 50px;
 }
+
+
+/* mudando a cor padrão quando um texto e selecionado */
+
+ ::selection {
+    background: #F22558;
+    color: rgb(255, 255, 255);
+}
