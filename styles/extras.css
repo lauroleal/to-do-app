@@ -150,6 +150,44 @@
      height: auto;
      margin: 15px 5px 5px 0px;
  }
+ /* manipulando as propriedades do input radio  / Funciona no Google */
+ 
+ input[type='radio']:after {
+     width: 2em;
+     height: 2em;
+     border-radius: 50%;
+     top: -6px;
+     left: -8px;
+     position: relative;
+     background-color: #ffffff;
+     content: '';
+     cursor: pointer;
+     display: inline-block;
+     visibility: visible;
+     border: 1px solid #f22558;
+     transition: all 1s;
+     z-index: 100;
+ }
+ 
+ input[type='radio']:checked:after {
+     width: 2em;
+     height: 2em;
+     border-radius: 50%;
+     top: -6px;
+     left: -8px;
+     position: relative;
+     background-color: #f22558;
+     content: '';
+     display: inline-block;
+     visibility: visible;
+     border: 1px solid #f22558;
+     z-index: 100;
+ }
+ /* animando os campos da propriedade radio*/
+ 
+ input[type='radio']:hover:after {
+     background-color: #F22558;
+ }
  
  @media only screen and (max-width: 600px) {
      .box__externo {

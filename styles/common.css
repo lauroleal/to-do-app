@@ -26,3 +26,29 @@ button {
     border-radius: 3px;
     cursor: pointer;
 }
+
+
+/* estilizando a barra de rolagem*/
+
+
+/* no Firefox */
+
+* {
+    scrollbar-width: thin;
+}
+
+
+/* no Chrome, Edge, e Safari */
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #e9e3e3ee;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #F22558;
+    border-radius: 50px;
+}

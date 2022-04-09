@@ -101,6 +101,9 @@ form.addEventListener("submit", function(event) {
                 console.log(respos);
                 setTimeout(function() {
                     selectId("legenda-tarefa").innerHTML = '';
+                    //recarregando a pagina para atualizar as tarefas
+                    location.reload();
+
                 }, 4000);
 
             })
@@ -176,6 +179,12 @@ function recuperarTarefas() {
                     let divDone = document.createElement("div");
                     // atribuido a class not-done na tag div
                     divDone.classList.add("not-done");
+                    // criando o input pra marcar tarefa como finalizada
+                    let inputCh = document.createElement("input");
+                    // indentificando o input che 
+                    inputCh.setAttribute('type', `radio`);
+                    inputCh.setAttribute('onclick', `marcarTarefa(${idTarefa})`);
+                    inputCh.setAttribute('alt', `marcar tarefa como concluída`);
                     // criando outra tag div
                     let divDesc = document.createElement("div");
                     // atribuido a class descricao na tag div
@@ -221,6 +230,7 @@ function recuperarTarefas() {
                     // jogando tudo na tela
                     divDesc.appendChild(pNome);
                     divDesc.appendChild(pTempo);
+                    divDone.appendChild(inputCh);
                     divDone.appendChild(divDesc);
                     butaoDel.appendChild(imgDel);
                     butaoEdit.appendChild(imgEdit);
@@ -256,6 +266,12 @@ function recuperarTarefas() {
                     let divDone = document.createElement("div");
                     // atribuido a class not-done na tag div
                     divDone.classList.add("not-done");
+                    // criando o input pra marcar tarefa como finalizada
+                    let inputCh = document.createElement("input");
+                    // indentificando o input che 
+                    inputCh.setAttribute('type', `radio`);
+                    inputCh.setAttribute('onclick', `desMarcarTarefa(${idTarefa})`);
+                    inputCh.setAttribute('alt', `Desmarcar tarefa como concluída`);
                     // criando outra tag div
                     let divDesc = document.createElement("div");
                     // atribuido a class descricao na tag div
@@ -279,13 +295,23 @@ function recuperarTarefas() {
                     // add a data da descricao na tag p
                     let texdata = document.createTextNode(dataFormatada);
                     pTempo.appendChild(texdata);
+                    // os botoes editar e deletar + classs + atributos
+                    let butaoDel = document.createElement("button");
+                    butaoDel.classList.add("buttons-tarefas");
+                    butaoDel.setAttribute('onclick', `deletarTarefa(${idTarefa})`);
+                    let imgDel = document.createElement("img");
+                    imgDel.classList.add("img-tarefas");
+                    imgDel.setAttribute('src', './assets/delete.svg');
 
                     // jogando tudo na tela
                     divDesc.appendChild(pNome);
                     divDesc.appendChild(pTempo);
+                    divDone.appendChild(inputCh);
                     divDone.appendChild(divDesc);
+                    butaoDel.appendChild(imgDel);
                     li.appendChild(divDone);
                     li.appendChild(divDesc);
+                    li.appendChild(butaoDel);
                     div.appendChild(li);
                 }
 
@@ -754,8 +780,6 @@ function cancelarEdicaoBusca(id) {
 function enviarTarefaEditadaBusca(id) {
 
     let campoTarefa = selectId(`input${id}`).value;
-    console.log(campoTarefa);
-
     let tarefas = {
         "description": campoTarefa,
         "completed": false
@@ -791,6 +815,82 @@ function enviarTarefaEditadaBusca(id) {
             setTimeout(function() {
                 selectId("menssagemBusca").innerHTML = '';
             }, 4000);
+
+            //atualizando as tarefas
+            location.reload();
+
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
+
+function marcarTarefa(id) {
+    let campoTarefa = selectId(`pnome${id}`).innerText;
+
+    let tarefas = {
+        "description": campoTarefa,
+        "completed": true
+    }
+
+
+    const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
+    const token = localStorage.getItem('token');
+
+    const promessa = fetch(url, {
+        method: "PUT",
+        headers: {
+            "accept": "application/json",
+            authorization: token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tarefas)
+    });
+
+    promessa
+        .then(function(Response) {
+            return Response.json();
+        })
+        .then(function(retorno) {
+            console.log(retorno);
+
+            //atualizando as tarefas
+            location.reload();
+
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
+
+function desMarcarTarefa(id) {
+    let campoTarefa = selectId(`pnome${id}`).innerText;
+
+    let tarefas = {
+        "description": campoTarefa,
+        "completed": false
+    }
+
+
+    const url = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`;
+    const token = localStorage.getItem('token');
+
+    const promessa = fetch(url, {
+        method: "PUT",
+        headers: {
+            "accept": "application/json",
+            authorization: token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tarefas)
+    });
+
+    promessa
+        .then(function(Response) {
+            return Response.json();
+        })
+        .then(function(retorno) {
+            console.log(retorno);
 
             //atualizando as tarefas
             location.reload();
