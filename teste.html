@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+     :root {
+        --red: red;
+        --orange: orange;
+        --yellow: yellow;
+        --green: green;
+        --blue: blue;
+        --purple: purple;
+    }
+    
+     :root::after {
+        --purple: purple;
+        --blue: blue;
+        --green: green;
+        --yellow: yellow;
+        --orange: orange;
+        --red: red;
+    }
+    
+    body {
+        background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--purple));
+    }
+    
+    body {
+        background: linear-gradient(90deg, var(--purple), var(--blue), var(--green), var(--yellow), var(--orange), var(--red));
+        animation: trasparencia 1s infinite;
+    }
+    
+    @keyframes trasparencia {
+        0% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 0.8;
+        }
+    }
+</style>
+<script>
+</script>
+
+<body>
+
+</body>
+
+</html>

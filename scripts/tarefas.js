@@ -247,8 +247,8 @@ function recuperarTarefas() {
                     let status = element.completed;
 
                     // Formatando a data
-                    let dataCriacao = element.createdAt;
-                    dataCriacao = new Date();
+                    let data = element.createdAt;
+                    dataCriacao = new Date(data);
                     let dia = dataCriacao.getDate().toString().padStart(2, '0'),
                         mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
                         ano = dataCriacao.getFullYear().toString().substr(-2);
