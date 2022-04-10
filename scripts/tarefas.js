@@ -157,14 +157,15 @@ function recuperarTarefas() {
                     let status = element.completed;
 
                     // Formatando a data
-                    let dataCriacao = element.createdAt;
+                    let data = element.createdAt;
+                    console.log(element.createdAt);
+                    dataCriacao = new Date(data);
 
-                    dataCriacao = new Date();
                     let dia = dataCriacao.getDate().toString().padStart(2, '0'),
                         mes = (dataCriacao.getMonth() + 1).toString().padStart(2, '0'),
                         ano = dataCriacao.getFullYear().toString().substr(-2);
                     let dataFormatada = `Criada em: ${dia}/${mes}/${ano}`;
-
+                    console.log(dataFormatada);
 
                     // capturando a descricao da tarefa
                     let descricao = element.description;
@@ -381,74 +382,84 @@ function confirmarDeletarTarefa(id) {
 }
 
 //############################### $$ Criar um input pra editar as tarefas $$ ###############################
+// def valor de controle para o editar tarefa
+let valor = 1;
 
 function EditarTarefa(id) {
+    if (valor === 1) {
+        console.log('ei 2');
+        // selecionando  a div que é criada a nova tarefa
+        let div = selectId(`descr${id}`);
+        // criando uma nova tag input
+        let input = document.createElement("input");
+        // atribuido uma id pata a nova tag input
+        input.setAttribute('id', `inputeditar${id}`);
+        // add estilo ao input
+        input.classList.add("input-editar");
+        // mostrando o input na tela
+        div.appendChild(input);
+        // capturando o texto da tarefa
+        let valorTexto = document.getElementById(`pnome${id}`).innerText;
 
-    // selecionando  a div que é criada a nova tarefa
-    let div = selectId(`descr${id}`);
-    // criando uma nova tag input
-    let input = document.createElement("input");
-    // atribuido uma id pata a nova tag input
-    input.setAttribute('id', `inputeditar${id}`);
-    // add estilo ao input
-    input.classList.add("input-editar");
-    // mostrando o input na tela
-    div.appendChild(input);
-    // capturando o texto da tarefa
-    let valorTexto = document.getElementById(`pnome${id}`).innerText;
+        // capturando os valores se cancelar
+        let textoDaTarefa = selectId(`pnome${id}`).innerText;
+        let data = selectId(`datatarefa${id}`).innerText;
 
-    // capturando os valores se cancelar
-    let textoDaTarefa = selectId(`pnome${id}`).innerText;
-    let data = selectId(`datatarefa${id}`).innerText;
+        // pra ter de onde tirar os dados 😑
+        sessionStorage.setItem("data", data);
+        sessionStorage.setItem("texto", textoDaTarefa);
 
-    // pra ter de onde tirar os dados 😑
-    sessionStorage.setItem("data", data);
-    sessionStorage.setItem("texto", textoDaTarefa);
+        // escondendo o texto da tarefa e da data
+        document.getElementById(`pnome${id}`).innerHTML = '';
+        document.getElementById(`datatarefa${id}`).innerHTML = '';
+        // jogando o texto da tarefa para dentro do input
+        input.value = valorTexto;
 
-    // escondendo o texto da tarefa e da data
-    document.getElementById(`pnome${id}`).innerHTML = '';
-    document.getElementById(`datatarefa${id}`).innerHTML = '';
-    // jogando o texto da tarefa para dentro do input
-    input.value = valorTexto;
+        // criando um botão pra enviar a atualização pro servidor
+        let bt = document.createElement("button");
+        bt.setAttribute('onclick', `enviarTarefaEditada(${id})`);
+        bt.setAttribute('id', `btenviar${id}`);
+        //add estilo ao input
+        bt.classList.add("buttons-tarefas");
 
-    // criando um botão pra enviar a atualização pro servidor
-    let bt = document.createElement("button");
-    bt.setAttribute('onclick', `enviarTarefaEditada(${id})`);
-    bt.setAttribute('id', `btenviar${id}`);
-    //add estilo ao input
-    bt.classList.add("buttons-tarefas");
+        // criando um botão cancelar a atualização
+        let btCancel = document.createElement("button");
+        // #### resolvendo o erro de ficar chamando varios inputs chamando a função
+        // ### novamente
+        btCancel.setAttribute('onclick', `EditarTarefa(${id})`);
+        btCancel.setAttribute('id', `btcancel${id}`);
+        //add estilo ao input
+        btCancel.classList.add("buttons-tarefas");
 
-    // criando um botão cancelar a atualização
-    let btCancel = document.createElement("button");
-    btCancel.setAttribute('onclick', `cancelarEdicao(${id})`);
-    btCancel.setAttribute('id', `btcancel${id}`);
-    //add estilo ao input
-    btCancel.classList.add("buttons-tarefas");
+        //############# Botão enviar edição
+        // criando uma tag img
+        let imgbt = document.createElement("img");
+        // add estilo ao img
+        imgbt.classList.add("img-tarefas");
+        imgbt.setAttribute('src', './assets/send.png');
+        imgbt.setAttribute('id', `imgbt${id}`);
+        imgbt.setAttribute('alt', 'Salvar edição');
+        bt.appendChild(imgbt);
+        // colocando o botão na tela
+        div.appendChild(bt);
 
-    //############# Botão enviar edição
-    // criando uma tag img
-    let imgbt = document.createElement("img");
-    // add estilo ao img
-    imgbt.classList.add("img-tarefas");
-    imgbt.setAttribute('src', './assets/send.png');
-    imgbt.setAttribute('id', `imgbt${id}`);
-    imgbt.setAttribute('alt', 'Salvar edição');
-    bt.appendChild(imgbt);
-    // colocando o botão na tela
-    div.appendChild(bt);
+        //############# Botão cancelar edição
+        // criando uma tag img
+        let imgCancela = document.createElement("img");
+        // add estilo ao img
+        imgCancela.classList.add("img-tarefas-botoesx");
+        imgCancela.setAttribute('src', './assets/fechar__imput.png');
+        imgCancela.setAttribute('id', `imgCancela${id}`);
+        imgCancela.setAttribute('alt', 'Cancelar edição');
+        btCancel.appendChild(imgCancela);
+        // colocando o botão na tela
+        div.appendChild(btCancel);
+        valor++;
 
-    //############# Botão cancelar edição
-    // criando uma tag img
-    let imgCancela = document.createElement("img");
-    // add estilo ao img
-    imgCancela.classList.add("img-tarefas-botoesx");
-    imgCancela.setAttribute('src', './assets/fechar__imput.png');
-    imgCancela.setAttribute('id', `imgCancela${id}`);
-    imgCancela.setAttribute('alt', 'Cancelar edição');
-    btCancel.appendChild(imgCancela);
-    // colocando o botão na tela
-    div.appendChild(btCancel);
-
+    } else {
+        cancelarEdicao(id);
+        valor--;
+    }
 }
 
 //############################### $$ Botão cancelar edição da tarefa $$ ###############################
@@ -544,6 +555,8 @@ function recuperarTarefa() {
 
 
 }
+
+//############################### $$ Buscar tarefa por Id $$ ###############################
 
 function recuperarTarefaPorID(id) {
 
@@ -675,74 +688,80 @@ function deletarTarefaBusca(id) {
     deletarTarefa(id);
 }
 
+//############################### $$ editar a tarefa Busca Id $$ ###############################
+let valor_2 = 1;
 
 function EditarTarefaCampoB(id) {
+    if (valor_2 == 1) {
+        // selecionando  a div que é criada a nova tarefa
+        let div = selectId(`divbusca${id}`);
+        // criando uma nova tag input
+        let input = document.createElement("input");
+        // atribuido uma id pata a nova tag input
+        input.setAttribute('id', `input${id}`);
+        // add estilo ao input
+        input.classList.add("input-editar");
+        // mostrando o input na tela
+        div.appendChild(input);
+        // capturando o texto da tarefa
+        let valorTexto = document.getElementById(`pnome${id}`).innerText;
 
-    // selecionando  a div que é criada a nova tarefa
-    let div = selectId(`divbusca${id}`);
-    // criando uma nova tag input
-    let input = document.createElement("input");
-    // atribuido uma id pata a nova tag input
-    input.setAttribute('id', `input${id}`);
-    // add estilo ao input
-    input.classList.add("input-editar");
-    // mostrando o input na tela
-    div.appendChild(input);
-    // capturando o texto da tarefa
-    let valorTexto = document.getElementById(`pnome${id}`).innerText;
+        // capturando os valores se cancelar
+        let textoDaTarefab = selectId(`buscatexto${id}`).innerText;
+        let datab = selectId(`databusca${id}`).innerText;
 
-    // capturando os valores se cancelar
-    let textoDaTarefab = selectId(`buscatexto${id}`).innerText;
-    let datab = selectId(`databusca${id}`).innerText;
+        // pra ter de onde tirar os dados 😑
+        sessionStorage.setItem("datab", datab);
+        sessionStorage.setItem("textob", textoDaTarefab);
 
-    // pra ter de onde tirar os dados 😑
-    sessionStorage.setItem("datab", datab);
-    sessionStorage.setItem("textob", textoDaTarefab);
+        // escondendo o texto da tarefa e da data
+        document.getElementById(`buscatexto${id}`).innerHTML = '';
+        document.getElementById(`databusca${id}`).innerHTML = '';
+        // jogando o texto da tarefa para dentro do input
+        input.value = valorTexto;
 
-    // escondendo o texto da tarefa e da data
-    document.getElementById(`buscatexto${id}`).innerHTML = '';
-    document.getElementById(`databusca${id}`).innerHTML = '';
-    // jogando o texto da tarefa para dentro do input
-    input.value = valorTexto;
+        // criando um botão pra enviar a atualização pro servidor
+        let bt = document.createElement("button");
+        bt.setAttribute('onclick', `enviarTarefaEditadaBusca(${id})`);
+        bt.setAttribute('id', `btenviarb${id}`);
+        //add estilo ao input
+        bt.classList.add("buttons-tarefas");
 
-    // criando um botão pra enviar a atualização pro servidor
-    let bt = document.createElement("button");
-    bt.setAttribute('onclick', `enviarTarefaEditadaBusca(${id})`);
-    bt.setAttribute('id', `btenviarb${id}`);
-    //add estilo ao input
-    bt.classList.add("buttons-tarefas");
+        // criando um botão cancelar a atualização
+        let btCancel = document.createElement("button");
+        btCancel.setAttribute('onclick', `EditarTarefaCampoB(${id})`);
+        btCancel.setAttribute('id', `btcancelb${id}`);
+        //add estilo ao input
+        btCancel.classList.add("buttons-tarefas");
 
-    // criando um botão cancelar a atualização
-    let btCancel = document.createElement("button");
-    btCancel.setAttribute('onclick', `cancelarEdicaoBusca(${id})`);
-    btCancel.setAttribute('id', `btcancelb${id}`);
-    //add estilo ao input
-    btCancel.classList.add("buttons-tarefas");
+        //############# Botão enviar edição
+        // criando uma tag img
+        let imgbt = document.createElement("img");
+        // add estilo ao img
+        imgbt.classList.add("img-tarefas");
+        imgbt.setAttribute('src', './assets/send.png');
+        imgbt.setAttribute('id', `imgbtb${id}`);
+        imgbt.setAttribute('alt', 'Salvar edição');
+        bt.appendChild(imgbt);
+        // colocando o botão na tela
+        div.appendChild(bt);
 
-    //############# Botão enviar edição
-    // criando uma tag img
-    let imgbt = document.createElement("img");
-    // add estilo ao img
-    imgbt.classList.add("img-tarefas");
-    imgbt.setAttribute('src', './assets/send.png');
-    imgbt.setAttribute('id', `imgbtb${id}`);
-    imgbt.setAttribute('alt', 'Salvar edição');
-    bt.appendChild(imgbt);
-    // colocando o botão na tela
-    div.appendChild(bt);
-
-    //############# Botão cancelar edição
-    // criando uma tag img
-    let imgCancela = document.createElement("img");
-    // add estilo ao img
-    imgCancela.classList.add("img-tarefas-botoesx");
-    imgCancela.setAttribute('src', './assets/fechar__imput.png');
-    imgCancela.setAttribute('id', `imgCancelab${id}`);
-    imgCancela.setAttribute('alt', 'Cancelar edição');
-    btCancel.appendChild(imgCancela);
-    // colocando o botão na tela
-    div.appendChild(btCancel);
-
+        //############# Botão cancelar edição
+        // criando uma tag img
+        let imgCancela = document.createElement("img");
+        // add estilo ao img
+        imgCancela.classList.add("img-tarefas-botoesx");
+        imgCancela.setAttribute('src', './assets/fechar__imput.png');
+        imgCancela.setAttribute('id', `imgCancelab${id}`);
+        imgCancela.setAttribute('alt', 'Cancelar edição');
+        btCancel.appendChild(imgCancela);
+        // colocando o botão na tela
+        div.appendChild(btCancel);
+        valor_2++;
+    } else {
+        cancelarEdicaoBusca(id);
+        valor_2--;
+    }
 }
 
 function EditarTarefaBusca(id) {
@@ -825,6 +844,8 @@ function enviarTarefaEditadaBusca(id) {
         });
 }
 
+//############################### $$ Marcar tarefa concluída $$ ###############################
+
 function marcarTarefa(id) {
     let campoTarefa = selectId(`pnome${id}`).innerText;
 
@@ -863,6 +884,8 @@ function marcarTarefa(id) {
         });
 }
 
+//############################### $$ Desmarcar tarefa como concluída $$ ###############################
+
 function desMarcarTarefa(id) {
     let campoTarefa = selectId(`pnome${id}`).innerText;
 
@@ -900,6 +923,8 @@ function desMarcarTarefa(id) {
             console.log(err);
         });
 }
+
+//############################### $$ Delogando o usuario $$ ###############################
 
 function deslogar() {
 
