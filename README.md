@@ -24,7 +24,7 @@ O **TO-DO-APP** (TU DU APP) é uma aplicação de gerenciamento de tarefas, base
 
 ## Curiosidades
 O projeto consumiu cerca de: 
-- 1.145 linhas de **JS**
+- 1.175 linhas de **JS**
 - 846 linhas de **CSS**
 - 298 linhas de **HTML**
 - 32 arquivos de **imagem**
@@ -33,9 +33,9 @@ O projeto consumiu cerca de:
 # Principais Telas
 
 ## Cadastro >>>>>>>>>>>>>>>>>>>>>
-![Modelo desenvolvido para a atividade](https://imgur.com/2mSmXdC.png)
+![Tela de cadastro](https://imgur.com/2mSmXdC.png)
 ## Login >>>>>>>>>>>>>>>>>>>>>
-![Modelo desenvolvido para a atividade](https://imgur.com/FbzIUhu.png)
+![Tela de Login](https://imgur.com/FbzIUhu.png)
 
 ## Gerenciarde tarefas >>>>>>>>>>>>>>>>>>>>>
 ![Gerenciador das tarefas](https://imgur.com/Etd74YV.png)

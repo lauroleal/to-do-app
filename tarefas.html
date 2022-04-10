@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./styles/tarefas.css">
     <link rel="stylesheet" href="./styles/extras.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <!-- ------------------- Biblioteca de icones - Fontawesome -------------------- -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
@@ -18,7 +17,6 @@
     <!-- CDN example (unpkg) -->
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <title>To-Do App</title>
     <link id="icon" rel="icon" type="image/png" href="./assets/icon.png">
 </head>
@@ -28,15 +26,12 @@
         <nav>
             <a href="#">Tarefas</a>
         </nav>
-
         <div class="user-info">
-
             <div class="dropdown">
                 <button class="dropbtn"><p id="nome_user">Nome usuário</p></button>
                 <div class="dropdown-content">
                     <p class="menu" id="dadosUser"></p>
                     <p class="menu" id="closeApp" onclick="deslogar()">Finalizar sessão</p>
-
                 </div>
             </div>
             <div class="user-image">
@@ -50,9 +45,7 @@
         <span id="legenda-tarefa"></span>
         <span id="img_carregando"></span>
     </div>
-
     <form class="nova-tarefa">
-
         <div class="not-done"></div>
         <input id="novaTarea" name="tarefa" type="text" placeholder="Nova tarefa">
         <button type="submit">
@@ -76,8 +69,6 @@
     </div>
     <ul class="tarefas-pendentes-busca" id="resultadoBusca">
     </ul>
-
-
     <script src="./scripts/tarefas.js"></script>
     <script>
         // menssagem de confirmação de exclusão de tarefas fonte: https://sweetalert2.github.io/ 
