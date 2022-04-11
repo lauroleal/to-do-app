@@ -154,7 +154,7 @@
  }
  /* manipulando as propriedades do input radio  / Funciona no Google */
  
- input[type='radio']:after {
+ .bola:after {
      width: 2em;
      height: 2em;
      border-radius: 50%;
@@ -171,7 +171,7 @@
      z-index: 100;
  }
  
- input[type='radio']:checked:after {
+ .bola:checked:after {
      width: 2em;
      height: 2em;
      border-radius: 50%;
@@ -187,7 +187,7 @@
  }
  /* animando os campos da propriedade radio*/
  
- input[type='radio']:hover:after {
+ .bola:hover:after {
      background-color: #F22558;
  }
  

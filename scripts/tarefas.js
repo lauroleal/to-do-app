@@ -180,15 +180,16 @@ function recuperarTarefas() {
                     li.classList.add("tarefa");
                     // criando uma tag div
                     let divDone = document.createElement("div");
+                    let span = document.createElement("span");
                     // atribuido a class not-done na tag div
                     divDone.classList.add("not-done");
-                    // criando o input pra marcar tarefa como finalizada
-                    let inputCh = document.createElement("input");
-                    // indentificando o input che 
-                    inputCh.setAttribute('type', `radio`);
-                    inputCh.setAttribute('onclick', `marcarTarefa(${idTarefa})`);
-                    inputCh.setAttribute('alt', `marcar tarefa como concluída`);
-                    // criando outra tag div
+                    //####### para a legenda de marcar / desmarcar tarefa + function
+                    span.classList.add("span-che");
+                    divDone.setAttribute('onclick', `marcarTarefa(${idTarefa})`);
+                    divDone.setAttribute('onmousemove', `legenda(${idTarefa})`);
+                    divDone.setAttribute('onmouseout', `tiraLegenda(${idTarefa})`);
+                    span.setAttribute('id', `legenda${idTarefa}`);
+
                     let divDesc = document.createElement("div");
                     // atribuido a class descricao na tag div
                     divDesc.classList.add("descricao");
@@ -233,7 +234,7 @@ function recuperarTarefas() {
                     // jogando tudo na tela
                     divDesc.appendChild(pNome);
                     divDesc.appendChild(pTempo);
-                    divDone.appendChild(inputCh);
+                    divDone.appendChild(span);
                     divDone.appendChild(divDesc);
                     butaoDel.appendChild(imgDel);
                     butaoEdit.appendChild(imgEdit);
@@ -269,13 +270,13 @@ function recuperarTarefas() {
                     let divDone = document.createElement("div");
                     // atribuido a class not-done na tag div
                     divDone.classList.add("not-done");
-                    // criando o input pra marcar tarefa como finalizada
-                    let inputCh = document.createElement("input");
-                    // indentificando o input che 
-                    inputCh.setAttribute('type', `radio`);
-                    inputCh.setAttribute('onclick', `desMarcarTarefa(${idTarefa})`);
-                    inputCh.setAttribute('alt', `Desmarcar tarefa como concluída`);
-                    // criando outra tag div
+                    //####### para a legenda de marcar / desmarcar tarefa + function
+                    let span = document.createElement("span");
+                    span.classList.add("span-che-2");
+                    divDone.setAttribute('onclick', `marcarTarefa(${idTarefa})`);
+                    divDone.setAttribute('onmousemove', `desLegenda(${idTarefa})`);
+                    divDone.setAttribute('onmouseout', `desTiraLegenda(${idTarefa})`);
+                    span.setAttribute('id', `legenda${idTarefa}`);
                     let divDesc = document.createElement("div");
                     // atribuido a class descricao na tag div
                     divDesc.classList.add("descricao");
@@ -309,7 +310,7 @@ function recuperarTarefas() {
                     // jogando tudo na tela
                     divDesc.appendChild(pNome);
                     divDesc.appendChild(pTempo);
-                    divDone.appendChild(inputCh);
+                    divDone.appendChild(span);
                     divDone.appendChild(divDesc);
                     butaoDel.appendChild(imgDel);
                     li.appendChild(divDone);
@@ -923,6 +924,34 @@ function desMarcarTarefa(id) {
             console.log(err);
         });
 }
+//##################################### LEGENDAS 
+
+// mostrar texto marcar tarefa como finalizada
+function legenda(id) {
+
+    let texto = `Finalizar tarefa?`;
+    selectId(`legenda${id}`).innerText = texto;
+}
+
+// remover o texto marcar tarefa como finalizada
+function tiraLegenda(id) {
+    let texto = ``;
+    selectId(`legenda${id}`).innerText = texto;
+}
+
+// mostrar texto desmarcar tarefa como finalizada
+function desLegenda(id) {
+
+    let texto = `Desmarcar tarefa?`;
+    selectId(`legenda${id}`).innerText = texto;
+}
+
+// remover o texto marcar tarefa como finalizada
+function desTiraLegenda(id) {
+    let texto = ``;
+    selectId(`legenda${id}`).innerText = texto;
+}
+
 
 //############################### $$ Delogando o usuario $$ ###############################
 

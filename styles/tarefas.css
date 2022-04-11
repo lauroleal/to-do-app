@@ -178,8 +178,32 @@ a {
     margin-right: 1em;
     border-radius: 50%;
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     color: grey;
+}
+
+.span-che {
+    position: absolute;
+    width: 8em;
+    margin: 2em;
+    height: auto;
+    margin-top: -2em;
+    margin-left: -3em;
+    border-radius: 5%;
+    background-color: #f22558b7;
+    color: white;
+}
+
+.span-che-2 {
+    position: absolute;
+    width: 10em;
+    margin: 2em;
+    height: auto;
+    margin-top: -2em;
+    margin-left: -3em;
+    border-radius: 5%;
+    background-color: #f22558b7;
+    color: white;
 }
 
 
