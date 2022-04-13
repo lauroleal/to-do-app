@@ -95,11 +95,11 @@
  
  footer {
      background: linear-gradient(90deg, var(--primary), var(--secondary));
-     position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem; 
+     position: relative;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     padding: 1rem;
  }
  
  .p__footer {
