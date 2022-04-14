@@ -273,7 +273,7 @@ function recuperarTarefas() {
                     //####### para a legenda de marcar / desmarcar tarefa + function
                     let span = document.createElement("span");
                     span.classList.add("span-che-2");
-                    divDone.setAttribute('onclick', `marcarTarefa(${idTarefa})`);
+                    divDone.setAttribute('onclick', `desMarcarTarefa(${idTarefa})`);
                     divDone.setAttribute('onmousemove', `desLegenda(${idTarefa})`);
                     divDone.setAttribute('onmouseout', `desTiraLegenda(${idTarefa})`);
                     span.setAttribute('id', `legenda${idTarefa}`);
